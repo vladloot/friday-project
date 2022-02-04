@@ -10,5 +10,5 @@ export const SuperComponents = () => {
             <SuperCheckbox />
             <SuperButton>Button</SuperButton>
         </div>
-    )
+    );
 };
