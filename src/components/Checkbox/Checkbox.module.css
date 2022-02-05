@@ -1,0 +1,17 @@
+.checkbox {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+
+.spanClassName {
+    font-size: 25px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: solid rgb(68, 68, 68);
+    font-variant: normal;
+    text-transform: none;
+}
