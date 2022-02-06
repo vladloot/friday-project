@@ -1,23 +1,24 @@
 import React, { FC } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
-import Button from 'components/Button/Button';
-import Input from 'components/Input/Input';
+import LoginForm from 'components/LoginForm/LoginForm';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 
-const Login: FC = () => (
-  <div>
-    <h1>FlashCards</h1>
-    <h2>Sign In</h2>
-    <form>
-      <Input type="text" placeholder="Email" />
-      <Input type="password" placeholder="Password" />
+const Login: FC = () => {
+  const { isLoggedIn } = useTypedSelector(state => state.login);
+
+  if (isLoggedIn) {
+    return <Navigate to="/profile" />;
+  }
+  return (
+    <div>
+      <LoginForm />
       <Link to="/password-recovery">Forgot Password</Link>
-      <Button>Login</Button>
       <span>Don&apos;t have an account?</span>
       <Link to="/registration">Sign Up</Link>
-    </form>
-  </div>
-);
+    </div>
+  );
+};
 
 export default Login;

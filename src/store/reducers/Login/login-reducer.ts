@@ -1,12 +1,14 @@
-import { AuthActionEnum, AuthActions, AuthState } from 'store/reducers/Auth/types';
+import { LoginActionEnum, LoginActions } from 'store/reducers/Login/types';
 
-export const initialState = {
+const initialState = {
   isLoggedIn: false,
 };
 
-export const authReducer = (state = initialState, action: AuthActions): AuthState => {
+export type LoginState = typeof initialState;
+
+export const loginReducer = (state = initialState, action: LoginActions): LoginState => {
   switch (action.type) {
-    case AuthActionEnum.SET_IS_LOGGED_IN:
+    case LoginActionEnum.SET_IS_LOGGED_IN:
       return { ...state, isLoggedIn: action.isLoggedIn };
     default:
       return state;

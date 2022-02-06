@@ -1,15 +1,16 @@
-import { AuthActionEnum } from 'store/reducers/Auth/types';
-import { LoginParamsType, LoginService } from "api/LoginService";
-import { AppDispatch } from "store/store";
+import { LoginParamsType, LoginService } from 'api/LoginService';
+import { LoginActionEnum } from 'store/reducers/Login/types';
+import { AppDispatch } from 'store/store';
 
-export const AuthActionCreators = {
+export const LoginActionCreators = {
   setIsLoggedIn: (isLoggedIn: boolean) =>
-    ({ type: AuthActionEnum.SET_IS_LOGGED_IN, isLoggedIn } as const),
+    ({ type: LoginActionEnum.SET_IS_LOGGED_IN, isLoggedIn } as const),
   login: (loginData: LoginParamsType) => async (dispatch: AppDispatch) => {
-      try {
-        const response = await LoginService.login(loginData);
-        response.status
-        dispatch(AuthActionCreators.setIsLoggedIn(true))
-      }
-  }
+    try {
+      await LoginService.login(loginData);
+      dispatch(LoginActionCreators.setIsLoggedIn(true));
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
