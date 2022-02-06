@@ -1,13 +1,11 @@
-enum AppActionsEnum {}
+type AppState = {};
+type AppActions = any;
 
-type AppState = {}
-type AppActions = any
-
-const initialState: AppState = {}
+const initialState: AppState = {};
 
 export const appReducer = (state = initialState, action: AppActions): AppState => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
