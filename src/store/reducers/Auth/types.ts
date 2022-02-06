@@ -1,7 +1,3 @@
-export enum AuthEnum {
+export enum AuthEnum {}
 
-}
-
-export type AuthActionTypes = {
-
-}
+export type AuthActionTypes = {};

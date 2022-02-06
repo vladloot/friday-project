@@ -1,3 +1,1 @@
-export const AuthActions = {
-
-}
+export const AuthActions = {};

@@ -1,0 +1,48 @@
+.registrationForm {
+    width: 413px;
+    height: 540px;
+    background: #F9F9FE;
+    border-radius: 8px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.companyName {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 39px;
+    color: #2D2E46;
+    margin: 22px 0 32px 0;
+}
+
+.title {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #2D2E46;
+    margin-bottom: 57px;
+}
+
+.registrationForm input {
+    background: #F9F9FE;
+    margin: 0 33px 24px 33px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    align-self: normal;
+    height: 26px;
+    position: relative;
+}
+
+.buttonWrapper {
+    margin-top: 30px;
+}
+
+.cancelBtn {
+    margin-right: 40px;
+}

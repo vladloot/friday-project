@@ -1,16 +1,15 @@
-import React from 'react';
-import Input from '../../components/Input/Input';
-import Checkbox from '../../components/Checkbox/Checkbox';
-import Button from '../../components/Button/Button';
+import React, { FC } from 'react';
 
-const Test = () => {
-    return (
-        <div>
-            <Input/>
-            <Checkbox/>
-            <Button>Submit</Button>
-        </div>
-    );
-};
+import Button from '../../components/Button/Button';
+import Checkbox from '../../components/Checkbox/Checkbox';
+import Input from '../../components/Input/Input';
+
+const Test: FC = () => (
+  <div>
+    <Input />
+    <Checkbox />
+    <Button>Submit</Button>
+  </div>
+);
 
 export default Test;

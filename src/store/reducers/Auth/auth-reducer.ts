@@ -1,13 +1,16 @@
-enum AuthActionsEnum {}
+// enum AuthActionsEnum {}
 
-type AuthState = {}
-type AuthActions = any
+type AuthState = {};
+type AuthActions = any;
 
-const initialState: AuthState = {}
+const initialState: AuthState = {};
 
-export const authReducer = (state = initialState, action: AuthActions): AuthState => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
+export const authReducer = (
+  state = initialState,
+  action: AuthActions
+): AuthState => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};

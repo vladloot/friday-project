@@ -1,9 +1,3 @@
+export enum AppEnum {}
 
-
-export enum AppEnum {
-
-}
-
-export type AppActionTypes = {
-
-}
+export type AppActionTypes = {};
