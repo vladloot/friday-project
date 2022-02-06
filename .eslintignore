@@ -1,3 +1,6 @@
 *.css
 *.json
 *.d.ts
+Button.tsx
+Input.tsx
+Checkbox.tsx

@@ -2,38 +2,35 @@ import React, { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes } from '
 
 import s from './Checkbox.module.css';
 
-type DefaultInputPropsType = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement>;
 
-type SuperCheckboxPropsType = DefaultInputPropsType & {
+type CheckboxPropsType = DefaultInputPropsType & {
   onChangeChecked?: (checked: boolean) => void;
   spanClassName?: string;
 };
 
-const Checkbox: FC<SuperCheckboxPropsType> = ({
-  onChange,
-  onChangeChecked,
-  className,
-  children,
+const Checkbox: FC<CheckboxPropsType> = (
+  {
+    type,
+    onChange, onChangeChecked,
+    className, spanClassName,
+    children,
 
-  ...restProps
-}) => {
-  Checkbox.defaultProps = {
-    onChangeChecked: () => null,
-    spanClassName: '',
+    ...restProps
+  },
+) => {
+  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(e);
+    onChangeChecked && onChangeChecked(e.currentTarget.checked);
   };
-  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>): void =>
-    (onChange && onChange(e)) ||
-    (onChangeChecked && onChangeChecked(e.currentTarget.checked));
 
-  const finalInputClassName = `${s.checkbox} ${className || ''}`;
+  const finalInputClassName = `${s.checkbox} ${className ? className : ''}`;
 
   return (
-    <label htmlFor="checkbox">
+    <label>
       <input
-        type="checkbox"
+        type={'checkbox'}
         onChange={onChangeCallback}
         className={finalInputClassName}
         {...restProps}
