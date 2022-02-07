@@ -8,9 +8,8 @@ import { useTypedSelector } from 'hooks/useTypedSelector';
 const Login: FC = () => {
   const { isLoggedIn } = useTypedSelector(state => state.login);
 
-  if (isLoggedIn) {
-    return <Navigate to="/profile" />;
-  }
+  if (isLoggedIn) return <Navigate to="/profile" />;
+
   return (
     <div>
       <LoginForm />

@@ -48,7 +48,7 @@ const Input: FC<InputTextPropsType> = ({
   return (
     <label>
       <input
-        type={'text'}
+        type={type}
         value={value || ''}
         onChange={onChangeCallback}
         onKeyPress={onKeyPressCallback}
