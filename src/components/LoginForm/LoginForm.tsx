@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux';
 import Button from 'components/Button/Button';
 import Checkbox from 'components/Checkbox/Checkbox';
 import Input from 'components/Input/Input';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 import { LoginActionCreators } from 'store/reducers/Login/action-creators';
 
 const LoginForm: FC = () => {
   const dispatch = useDispatch();
-
+  const { error } = useTypedSelector(state => state.app);
   const [values, setValues] = useState({
     email: process.env.REACT_APP_EMAIL as string,
     password: process.env.REACT_APP_DB_PASSWORD as string,
@@ -25,6 +26,7 @@ const LoginForm: FC = () => {
     <div>
       <h1>Sign In</h1>
       <form onSubmit={onSubmit}>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <Input
           id="login-email"
           type="email"
