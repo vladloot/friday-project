@@ -12,7 +12,7 @@ const Profile: FC = () => {
 
   useEffect(() => {
     dispatch(LoginActionCreators.checkAuth());
-  }, [dispatch]);
+  }, []);
 
   if (!isLoggedIn) return <Navigate to="/login" />;
 
