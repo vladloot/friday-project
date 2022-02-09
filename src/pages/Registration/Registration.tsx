@@ -7,6 +7,7 @@ import style from './registration.module.css';
 
 import Button from 'components/Button/Button';
 import { LoaderSpinner } from 'components/LoaderSpinner/LoaderSpinner';
+import { RegisterError } from 'store/reducers/Registration/action-creators';
 import { fetchRegisterUser } from 'store/reducers/Registration/registration-thunk';
 import { RootState } from 'store/store';
 
@@ -32,7 +33,13 @@ const Registration: FC = () => {
       email,
       password,
     };
-    dispatch(fetchRegisterUser(userInfo));
+
+    if (password === validPassword) {
+      dispatch(RegisterError(''));
+      dispatch(fetchRegisterUser(userInfo));
+    } else {
+      dispatch(RegisterError('Пароли не совпадают'));
+    }
   };
 
   if (isRegister) return <Navigate to="/login" />;
@@ -71,7 +78,7 @@ const Registration: FC = () => {
 
       <div className={style.buttonWrapper}>
         <Button className={style.cancelBtn}>Cancel</Button>
-        <Button className={style.registerBtn} onClick={registerUser}>
+        <Button className={style.registerBtn} onClick={registerUser} disabled={isLoading}>
           Register
         </Button>
       </div>

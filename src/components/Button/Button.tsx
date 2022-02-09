@@ -10,9 +10,11 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
   red?: boolean;
+  disabled?: boolean
 };
 
 export const Button: React.FC<SuperButtonPropsType> = ({
+  disabled,
   red,
   className,
   ...restProps // все остальные пропсы попадут в объект restProps, там же будет children
@@ -22,6 +24,7 @@ export const Button: React.FC<SuperButtonPropsType> = ({
   return (
     <button
       className={finalClassName}
+      disabled={disabled}
       {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
     />
   );
