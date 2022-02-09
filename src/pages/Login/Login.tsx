@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+
+import styles from './Login.module.css';
 
 import LoginForm from 'components/LoginForm/LoginForm';
 import { useTypedSelector } from 'hooks/useTypedSelector';
@@ -11,11 +13,10 @@ const Login: FC = () => {
   if (isLoggedIn) return <Navigate to="/profile" />;
 
   return (
-    <div>
-      <LoginForm />
-      <Link to="/password-recovery">Forgot Password</Link>
-      <span>Don&apos;t have an account?</span>
-      <Link to="/registration">Sign Up</Link>
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <LoginForm />
+      </div>
     </div>
   );
 };

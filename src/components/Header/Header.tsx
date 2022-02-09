@@ -38,9 +38,6 @@ const Header: FC = () => {
         <NavLink to="/new-password" className={styles.nav}>
           New Password
         </NavLink>
-        <NavLink to="/test" className={styles.nav}>
-          Test
-        </NavLink>
       </div>
       {isLoggedIn ? <Button onClick={handleLogout}>Log Out</Button> : ''}
     </div>

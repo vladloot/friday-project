@@ -1,6 +1,9 @@
 import React, { FC, FormEvent, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import styles from './LoginForm.module.css';
 
 import Button from 'components/Button/Button';
 import Checkbox from 'components/Checkbox/Checkbox';
@@ -23,31 +26,44 @@ const LoginForm: FC = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Sign In</h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={styles.form}>
         {error && <div style={{ color: 'red' }}>{error}</div>}
         <Input
           id="login-email"
           type="email"
+          style={{ width: '250px' }}
           value={values.email}
-          placeholder="Enter your email address..."
+          placeholder="Email"
           onChange={e => setValues({ ...values, email: e.currentTarget.value })}
         />
         <Input
           id="login-password"
           type="password"
+          style={{ width: '250px' }}
           value={values.password}
-          placeholder="Enter your password..."
+          placeholder="Password"
           onChange={e => setValues({ ...values, password: e.currentTarget.value })}
         />
-        <Checkbox
-          checked={values.rememberMe}
-          onChange={e => setValues({ ...values, rememberMe: e.currentTarget.checked })}
-        >
-          Remember Me
-        </Checkbox>
-        <Button type="submit">Login</Button>
+        <Link to="/password-recovery" className={styles.forgot_password}>
+          Forgot Password
+        </Link>
+        <div className={styles.checkbox}>
+          <Checkbox
+            checked={values.rememberMe}
+            onChange={e => setValues({ ...values, rememberMe: e.currentTarget.checked })}
+          >
+            Remember Me
+          </Checkbox>
+        </div>
+        <Button type="submit" className={styles.button}>
+          Login
+        </Button>
+        <span className={styles.text}>Don&apos;t have an account?</span>
+        <Link to="/registration" className={styles.sign_up}>
+          Sign Up
+        </Link>
       </form>
     </div>
   );
