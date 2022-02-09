@@ -1,23 +1,12 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Loader from 'components/Loader/Loader';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 import { privateRoutes, publicRoutes, RouteNames } from 'routes/routes';
-import { LoginActionCreators } from 'store/reducers/Login/action-creators';
 
 const AppRouter: FC = () => {
   const { isLoggedIn } = useTypedSelector(state => state.login);
-  const { isInitialized } = useTypedSelector(state => state.app);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(LoginActionCreators.checkAuth());
-  }, []);
-
-  if (!isInitialized) return <Loader />;
 
   return isLoggedIn ? (
     <Routes>
