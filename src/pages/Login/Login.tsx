@@ -14,9 +14,7 @@ const Login: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.form}>
-        <LoginForm />
-      </div>
+      <LoginForm />
     </div>
   );
 };

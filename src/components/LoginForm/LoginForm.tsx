@@ -27,7 +27,7 @@ const LoginForm: FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Sign In</h1>
+      <h1 className={styles.header}>Sign In</h1>
       <form onSubmit={onSubmit} className={styles.form}>
         {error && <div style={{ color: 'red' }}>{error}</div>}
         <Input

@@ -14,7 +14,6 @@ import { LoginActionCreators } from 'store/reducers/Login/action-creators';
 
 const App: FC = () => {
   const { isInitialized } = useTypedSelector(state => state.app);
-  const { isLoading } = useTypedSelector(state => state.app);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const App: FC = () => {
     <HashRouter>
       <Header />
       <AppRouter />
-      {isLoading && <Loader />}
     </HashRouter>
   );
 };
