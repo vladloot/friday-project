@@ -8,7 +8,6 @@ import Header from '../components/Header/Header';
 import AppRouter from './AppRouter';
 
 import { store } from 'store/store';
-
 import './App.css';
 
 const App: FC = () => (
@@ -19,5 +18,4 @@ const App: FC = () => (
     </Provider>
   </HashRouter>
 );
-
 export default App;
