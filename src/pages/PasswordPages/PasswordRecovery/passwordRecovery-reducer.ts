@@ -22,7 +22,7 @@ type InitialStateType = {
 
 const initialState = {
   info: "",
-  // error: "Something wrong",
+  error: "Something wrong",
   loading: false,
   isSent: false,
   email: "example@mail.ru",
@@ -106,8 +106,9 @@ export const resetPasswordTC =
         }
       })
       .catch((err) => {
-        dispatch(setSuccessInfoAC("something wrong"));
-        console.log(`Catch:${err}`);
+        // eslint-disable-next-line no-alert
+        alert(`Catch:${err.response.data.error}`);
+        dispatch(setSuccessInfoAC(err.data.error));
       })
       .finally(() => {
         dispatch(setIsLoadingAC(false));

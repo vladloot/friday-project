@@ -13,10 +13,9 @@ const PasswordRecovery: FC = () => {
   let email = useSelector<RootState, string>(
     (state) => state.resetPassword.email
   );
-  const errorMessage = useSelector<RootState, string | undefined>(
-    (state) => state.resetPassword.error
-  );
-
+  // const errorMessage = useSelector<RootState, string | undefined>(
+  //   (state) => state.resetPassword.error
+  // );
   const dispatch = useDispatch();
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -31,7 +30,7 @@ const PasswordRecovery: FC = () => {
     // eslint-disable-next-line no-alert
     email = document.getElementById("email").value;
     valueEmail = email;
-    console.log(email);
+    console.log(`Email:${valueEmail}`);
   }
 
   return (
@@ -50,7 +49,7 @@ const PasswordRecovery: FC = () => {
                 onChange={myFunction}
               />
 
-              {errorMessage ? <div>{errorMessage}</div> : null}
+              {/* <div>{errorMessage}</div> */}
             </div>
             <p>
               Enter your email address and we will send you further instructions
