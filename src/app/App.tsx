@@ -1,13 +1,14 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-import { Provider } from "react-redux";
-import { HashRouter } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 
-import Header from "../components/Header/Header";
-import { store } from "../store/store";
+import Header from '../components/Header/Header';
+import { store } from '../store/store';
 
-import AppRouter from "./AppRouter";
-import "./App.css";
+import AppRouter from './AppRouter';
+
+import './App.css';
 
 const App: FC = () => (
   <HashRouter>

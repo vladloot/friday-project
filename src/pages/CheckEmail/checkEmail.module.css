@@ -1,0 +1,31 @@
+.checkEmailPage {
+    width: 413px;
+    height: 468px;
+    background: #F9F9FE;
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.title {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 39px;
+    color: #2D2E46;
+}
+
+.message {
+    font-family: SF UI Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #2D2E46;
+    opacity: 0.7;
+    width: 328px;
+    height: 48px;
+    margin: 0 auto;
+}
