@@ -7,8 +7,6 @@
   "extends": [
     "airbnb",
     "prettier",
-    "plugin:react/recommended",
-    "react-app",
     "plugin:react/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -73,17 +71,6 @@
         "extensions": [
           ".jsx",
           ".tsx"
-        ]
-      }
-    ],
-    "react/jsx-props-no-spreading": [
-      2,
-      {
-        "html": "ignore",
-        "custom": "ignore",
-        "explicitSpread": "ignore",
-        "exceptions": [
-          "string"
         ]
       }
     ],
