@@ -1,43 +1,43 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
-import s from './Checkbox.module.css'
+import React, { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes } from 'react';
 
-// тип пропсов обычного инпута
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+import s from './Checkbox.module.css';
 
-type SuperCheckboxPropsType = DefaultInputPropsType & {
-    onChangeChecked?: (checked: boolean) => void
-    spanClassName?: string
-}
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement>;
 
-const Checkbox: React.FC<SuperCheckboxPropsType> = (
-    {
-        type, // достаём и игнорируем чтоб нельзя было задать другой тип инпута
-        onChange, onChangeChecked,
-        className, spanClassName,
-        children, // в эту переменную попадёт текст, типизировать не нужно так как он затипизирован в React.FC
+type CheckboxPropsType = DefaultInputPropsType & {
+  onChangeChecked?: (checked: boolean) => void;
+  spanClassName?: string;
+};
 
-        ...restProps// все остальные пропсы попадут в объект restProps
-    }
+const Checkbox: FC<CheckboxPropsType> = (
+  {
+    type,
+    onChange, onChangeChecked,
+    className, spanClassName,
+    children,
+
+    ...restProps
+  },
 ) => {
-    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange && onChange(e)// сделайте так чтоб работал onChange и onChangeChecked
-        onChangeChecked && onChangeChecked(e.currentTarget.checked)
-    }
+  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(e);
+    onChangeChecked && onChangeChecked(e.currentTarget.checked);
+  };
 
-    const finalInputClassName = `${s.checkbox} ${className ? className : ''}`
+  const finalInputClassName = `${s.checkbox} ${className ? className : ''}`;
 
-    return (
-        <label>
-            <input
-                type={'checkbox'}
-                onChange={onChangeCallback}
-                className={finalInputClassName}
+  return (
+    <label>
+      <input
+        type={'checkbox'}
+        onChange={onChangeCallback}
+        className={finalInputClassName}
+        {...restProps}
+      />
+      {children && <span className={s.spanClassName}>{children}</span>}
+    </label>
+  );
+};
 
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (checked например там внутри)
-            />
-            {children && <span className={s.spanClassName}>{children}</span>}
-        </label> // благодаря label нажатие на спан передастся в инпут
-    )
-}
-
-export default Checkbox
+export default Checkbox;

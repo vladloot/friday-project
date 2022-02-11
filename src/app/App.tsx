@@ -1,20 +1,15 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import {HashRouter} from 'react-router-dom';
-import {store} from '../store/store';
+import React, { FC } from 'react';
+
+import Header from '../components/Header/Header';
+
 import AppRouter from './AppRouter';
-import Header from "../components/Header/Header";
-import './App.css'
 
-const App = () => {
-    return (
-        <HashRouter>
-            <Provider store={store}>
-                <Header/>
-                <AppRouter/>
-            </Provider>
-        </HashRouter>
-    );
-};
+import './App.css';
 
+const App: FC = () => (
+  <>
+    <Header />
+    <AppRouter />
+  </>
+);
 export default App;
