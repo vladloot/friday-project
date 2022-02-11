@@ -1,0 +1,52 @@
+.container {
+    background: #F9F9FE;
+    width: 413px;
+    height: 600px;
+    border-radius: 10px;
+    font-family: Arial, serif;
+}
+
+.header {
+    padding-top: 96px;
+    text-align: center;
+    font-size: 22px;
+    color: #2D2E46;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.forgot_password {
+    padding: 10px 0 0 145px;
+    font-size: 14px;
+    color: #2D2E46;
+    text-decoration: none;
+
+}
+
+.checkbox {
+    padding: 70px 0 10px 0;
+}
+
+.button {
+    width: 200px;
+}
+
+.text {
+    padding-top: 30px;
+    font-size: 14px;
+    color: #2D2E46;
+    opacity: 0.5;
+}
+
+.sign_up {
+    padding-top: 11px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #21268F;
+}

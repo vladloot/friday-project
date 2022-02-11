@@ -1,3 +1,10 @@
 *.css
 *.json
+<<<<<<< HEAD
 *.d.ts
+=======
+*.d.ts
+Button.tsx
+Input.tsx
+Checkbox.tsx
+>>>>>>> origin/main

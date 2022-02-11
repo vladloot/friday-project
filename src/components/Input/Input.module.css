@@ -1,9 +1,9 @@
 .superInput {
+    display: block;
     height: 55px;
     width: 200px;
     border: 1px solid #BDBDBD;
     border-radius: 4px;
-    box-sizing: border-box;
     padding: 0 0 0 15px;
     margin: 0px;
 }

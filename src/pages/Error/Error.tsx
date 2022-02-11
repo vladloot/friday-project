@@ -1,11 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const Error = () => {
-    return (
-        <div>
-            Error 404
-        </div>
-    );
-};
+const Error: FC = () => <div>Error 404</div>;
 
 export default Error;

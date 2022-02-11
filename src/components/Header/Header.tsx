@@ -1,35 +1,26 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-import { NavLink } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
-import styles from "./Header.module.css";
+import styles from './Header.module.css';
 
-const Header: FC = () => (
-  <div className={styles.container}>
-    <div className={styles.menu}>
-      <NavLink to="/login" className={styles.nav}>
-        Login
-      </NavLink>
-      <NavLink to="/registration" className={styles.nav}>
-        Registration
-      </NavLink>
-      <NavLink to="/profile" className={styles.nav}>
-        Profile
-      </NavLink>
-      <NavLink to="/404" className={styles.nav}>
-        Error
-      </NavLink>
-      <NavLink to="/password-recovery" className={styles.nav}>
-        Password Recovery
-      </NavLink>
-      <NavLink to="/set-new-password" className={styles.nav}>
-        New Password
-      </NavLink>
-      <NavLink to="/test" className={styles.nav}>
-        Test
-      </NavLink>
+import Button from 'components/Button/Button';
+import { useTypedSelector } from 'hooks/useTypedSelector';
+import { allActionCreators } from 'store/reducers/action-creators';
+
+const Header: FC = () => {
+  const isLoggedIn = useTypedSelector(state => state.login.isLoggedIn);
+  const dispatch = useDispatch();
+
+  const handleLogout = (): void => {
+    dispatch(allActionCreators.logout());
+  };
+
+  return isLoggedIn ? (
+    <div className={styles.container}>
+      <Button onClick={handleLogout}>Log Out</Button>
     </div>
-  </div>
-);
+  ) : null;
+};
 
 export default Header;

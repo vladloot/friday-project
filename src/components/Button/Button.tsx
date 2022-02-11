@@ -1,27 +1,28 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
-import s from './Button.module.css'
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 
-// тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
-type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+import s from './Button.module.css';
 
-type SuperButtonPropsType = DefaultButtonPropsType & {
-    red?: boolean
-}
+type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement>;
 
-export const Button: React.FC<SuperButtonPropsType> = (
-    {
-        red, className,
-        ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
-    }
+type ButtonPropsType = DefaultButtonPropsType & {
+  red?: boolean;
+};
+
+export const Button: FC<ButtonPropsType> = (
+  {
+    red, className,
+    ...restProps
+  },
 ) => {
-    const finalClassName = `${red ? s.red : s.default} ${className}`
+  const finalClassName = `${red ? s.red : s.default} ${className}`;
 
-    return (
-        <button
-            className={finalClassName}
-            {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
-        />
-    )
-}
+  return (
+    <button
+      className={finalClassName}
+      {...restProps}
+    />
+  );
+};
 
-export default Button
+export default Button;

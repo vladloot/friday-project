@@ -1,5 +1,5 @@
 .default {
-    display: inline-block;
+    display: block;
     padding: 0.5em 1.4em;
     margin: 0.2em;
     border-radius: 2em;
@@ -29,7 +29,6 @@
 }
 
 .red {
-    display: inline-block;
     padding: 0.5em 1.4em;
     margin: 0.2em;
     border-radius: 2em;
@@ -59,7 +58,6 @@
 }
 
 .disabled {
-    display: inline-block;
     padding: 0.5em 1.4em;
     margin: 0.2em;
     border-radius: 2em;
