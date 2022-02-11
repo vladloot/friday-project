@@ -15,10 +15,14 @@ const Registration: FC = () => {
   const dispatch = useDispatch();
 
   const isRegister = useSelector<RootState, boolean>(
-    state => state.register.isRegisterSuccess,
+    state => state.registrationReducer.isRegisterSuccess,
   );
-  const errorMessage = useSelector<RootState, string>(state => state.register.error);
-  const isLoading = useSelector<RootState, boolean>(state => state.register.isLoading);
+  const errorMessage = useSelector<RootState, string>(
+    state => state.registrationReducer.error,
+  );
+  const isLoading = useSelector<RootState, boolean>(
+    state => state.registrationReducer.isLoading,
+  );
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

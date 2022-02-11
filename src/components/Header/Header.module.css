@@ -4,15 +4,3 @@
     height: 50px;
     background: steelblue;
 }
-
-.container .menu {
-    width: 800px;
-    display: flex;
-    justify-content: space-between;
-    padding: 13px 70px;
-}
-
-.container .menu .nav {
-    color: white;
-    text-decoration: none;
-}

@@ -1,7 +1,18 @@
 *.css
 *.json
+<<<<<<< HEAD
 *.d.ts
 Button.tsx
 Checkbox.tsx
 Input.tsx
 icons
+=======
+<<<<<<< HEAD
+*.d.ts
+=======
+*.d.ts
+Button.tsx
+Input.tsx
+Checkbox.tsx
+>>>>>>> origin/main
+>>>>>>> 193c2bcc8ca6ac0138b413aa785231e77b9de95c
