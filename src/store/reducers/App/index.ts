@@ -8,7 +8,7 @@ const initialState = {
 
 type AppState = typeof initialState;
 
-export const appReducer = (state = initialState, action: AppActions): AppState => {
+export default function appReducer(state = initialState, action: AppActions): AppState {
   switch (action.type) {
     case AppActionEnum.SET_IS_INITIALIZED:
       return { ...state, isInitialized: action.isInitialized };
@@ -19,4 +19,4 @@ export const appReducer = (state = initialState, action: AppActions): AppState =
     default:
       return state;
   }
-};
+}

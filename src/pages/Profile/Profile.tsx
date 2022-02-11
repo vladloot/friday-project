@@ -1,21 +1,14 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import styles from './Profile.module.css';
 
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { LoginActionCreators } from 'store/reducers/Login/action-creators';
 
 const Profile: FC = () => {
   const { isLoggedIn } = useTypedSelector(state => state.login);
   const user = useTypedSelector(state => state.login.info);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(LoginActionCreators.checkAuth());
-  }, []);
 
   if (!isLoggedIn) return <Navigate to="/login" />;
 

@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
+import { LoginParams, LogoutResponse, UserInfoResponse } from 'api/types';
+
 const instance = axios.create({
   baseURL: 'http://localhost:7542/2.0/',
   withCredentials: true,
@@ -18,29 +20,4 @@ export const LoginService = {
   logout() {
     return instance.delete<LogoutResponse>('/auth/me');
   },
-};
-
-export type LoginParams = {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-};
-
-export type LogoutResponse = {
-  info: string;
-  error: string;
-};
-
-export type UserInfoResponse = {
-  _id: string;
-  email: string;
-  name: string;
-  avatar?: string;
-  publicCardPacksCount: number;
-  created: Date;
-  updated: Date;
-  isAdmin: boolean;
-  verified: boolean;
-  rememberMe: boolean;
-  error?: string;
 };

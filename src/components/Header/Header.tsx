@@ -6,14 +6,14 @@ import styles from './Header.module.css';
 
 import Button from 'components/Button/Button';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { LoginActionCreators } from 'store/reducers/Login/action-creators';
+import { allActionCreators } from 'store/reducers/action-creators';
 
 const Header: FC = () => {
   const isLoggedIn = useTypedSelector(state => state.login.isLoggedIn);
   const dispatch = useDispatch();
 
   const handleLogout = (): void => {
-    dispatch(LoginActionCreators.logout());
+    dispatch(allActionCreators.logout());
   };
 
   return isLoggedIn ? (

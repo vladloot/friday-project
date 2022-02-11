@@ -1,5 +1,6 @@
-import { LoginParams, LoginService, UserInfoResponse } from 'api/LoginService';
-import { AppActionCreators } from 'store/reducers/App/action-creators';
+import { LoginService } from 'api/LoginService';
+import { LoginParams, UserInfoResponse } from 'api/types';
+import { allActionCreators } from 'store/reducers/action-creators';
 import { LoginActionEnum } from 'store/reducers/Login/types';
 import { AppDispatch } from 'store/store';
 import { handleError } from 'utils/error-utils';
@@ -13,41 +14,41 @@ export const LoginActionCreators = {
 
   login: (loginData: LoginParams) => async (dispatch: AppDispatch) => {
     try {
-      dispatch(AppActionCreators.setAppIsLoading(true));
+      dispatch(allActionCreators.setAppIsLoading(true));
       const response = await LoginService.login(loginData);
-      dispatch(LoginActionCreators.setUserInfo(response.data));
-      dispatch(LoginActionCreators.setIsLoggedIn(true));
+      dispatch(allActionCreators.setUserInfo(response.data));
+      dispatch(allActionCreators.setIsLoggedIn(true));
     } catch (error) {
       handleError(error, dispatch);
     } finally {
-      dispatch(AppActionCreators.setAppIsLoading(false));
+      dispatch(allActionCreators.setAppIsLoading(false));
     }
   },
 
   logout: () => async (dispatch: AppDispatch) => {
     try {
-      dispatch(AppActionCreators.setAppIsLoading(true));
+      dispatch(allActionCreators.setAppIsLoading(true));
       await LoginService.logout();
-      dispatch(LoginActionCreators.setUserInfo(null));
-      dispatch(LoginActionCreators.setIsLoggedIn(false));
+      dispatch(allActionCreators.setUserInfo(null));
+      dispatch(allActionCreators.setIsLoggedIn(false));
     } catch (error) {
       handleError(error, dispatch);
     } finally {
-      dispatch(AppActionCreators.setAppIsLoading(false));
+      dispatch(allActionCreators.setAppIsLoading(false));
     }
   },
 
   checkAuth: () => async (dispatch: AppDispatch) => {
     try {
-      dispatch(AppActionCreators.setAppIsLoading(true));
+      dispatch(allActionCreators.setAppIsLoading(true));
       const response = await LoginService.checkAuth();
-      dispatch(LoginActionCreators.setUserInfo(response.data));
-      dispatch(LoginActionCreators.setIsLoggedIn(true));
+      dispatch(allActionCreators.setUserInfo(response.data));
+      dispatch(allActionCreators.setIsLoggedIn(true));
     } catch (error) {
       handleError('', dispatch);
     } finally {
-      dispatch(AppActionCreators.setAppIsLoading(false));
-      dispatch(AppActionCreators.setAppIsInitialized(true));
+      dispatch(allActionCreators.setAppIsLoading(false));
+      dispatch(allActionCreators.setAppIsInitialized(true));
     }
   },
 };

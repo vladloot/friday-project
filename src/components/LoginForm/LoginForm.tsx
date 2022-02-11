@@ -9,7 +9,7 @@ import Button from 'components/Button/Button';
 import Checkbox from 'components/Checkbox/Checkbox';
 import Input from 'components/Input/Input';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { LoginActionCreators } from 'store/reducers/Login/action-creators';
+import { allActionCreators } from 'store/reducers/action-creators';
 
 const LoginForm: FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const LoginForm: FC = () => {
 
   const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
-    dispatch(LoginActionCreators.login({ ...values }));
+    dispatch(allActionCreators.login({ ...values }));
   };
 
   return (
