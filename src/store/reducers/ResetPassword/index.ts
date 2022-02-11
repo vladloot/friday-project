@@ -1,15 +1,8 @@
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
-import {
-  resetPasswordAPI,
-  ResetPasswordValuesType,
-} from "api/PasswordRecoveryService";
+import { resetPasswordAPI, ResetPasswordValuesType } from 'api/PasswordRecoveryService';
 
-type ActionType =
-  | SetSuccessInfoType
-  | setErrorACType
-  | setEmailACType
-  | setIsSentACType;
+type ActionType = SetSuccessInfoType | setErrorACType | setEmailACType | setIsSentACType;
 
 type InitialStateType = {
   info: string;
@@ -21,35 +14,35 @@ type InitialStateType = {
 };
 
 const initialState = {
-  info: "",
-  error: "Something wrong",
+  info: '',
+  error: 'Something wrong',
   loading: false,
   isSent: false,
-  email: "example@mail.ru",
+  email: 'example@mail.ru',
   isPasswordChanged: false,
 };
 
-export const resetPasswordReducer = (
+export default function resetPasswordReducer(
   state: InitialStateType = initialState,
-  action: ActionType
-): InitialStateType => {
+  action: ActionType,
+): InitialStateType {
   switch (action.type) {
-    case "SET-SUCCESS-INFO":
+    case 'SET-SUCCESS-INFO':
       return {
         ...state,
         info: action.info,
       };
-    case "SET-IS-LOADING-PASSWORD":
+    case 'SET-IS-LOADING-PASSWORD':
       return {
         ...state,
         loading: action.loading,
       };
-    case "SET-EMAIL":
+    case 'SET-EMAIL':
       return {
         ...state,
         email: action.email,
       };
-    case "SET-IS-SENT":
+    case 'SET-IS-SENT':
       return {
         ...state,
         isSent: action.isSent,
@@ -57,13 +50,13 @@ export const resetPasswordReducer = (
     default:
       return state;
   }
-};
+}
 
 export type SetSuccessInfoType = ReturnType<typeof setSuccessInfoAC>;
 
 export const setSuccessInfoAC = (info: string) =>
   ({
-    type: "SET-SUCCESS-INFO",
+    type: 'SET-SUCCESS-INFO',
     info,
   } as const);
 
@@ -71,7 +64,7 @@ export type setErrorACType = ReturnType<typeof setIsLoadingAC>;
 
 export const setIsLoadingAC = (loading: boolean) =>
   ({
-    type: "SET-IS-LOADING-PASSWORD",
+    type: 'SET-IS-LOADING-PASSWORD',
     loading,
   } as const);
 
@@ -79,7 +72,7 @@ export type setEmailACType = ReturnType<typeof setEmailAC>;
 
 export const setEmailAC = (email: string) =>
   ({
-    type: "SET-EMAIL",
+    type: 'SET-EMAIL',
     email,
   } as const);
 
@@ -87,17 +80,17 @@ export type setIsSentACType = ReturnType<typeof setIsSentAC>;
 
 export const setIsSentAC = (isSent: boolean) =>
   ({
-    type: "SET-IS-SENT",
+    type: 'SET-IS-SENT',
     isSent,
   } as const);
 
 export const resetPasswordTC =
   (resetPasswordData: ResetPasswordValuesType) => (dispatch: Dispatch) => {
-    console.log("resetPasswordTC");
+    console.log('resetPasswordTC');
     dispatch(setIsLoadingAC(true));
     resetPasswordAPI
       .resetPassword(resetPasswordData)
-      .then((res) => {
+      .then(res => {
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         if (res.status === 200) {
           console.log(res);
@@ -105,7 +98,7 @@ export const resetPasswordTC =
           dispatch(setIsSentAC(true));
         }
       })
-      .catch((err) => {
+      .catch(err => {
         // eslint-disable-next-line no-alert
         alert(`Catch:${err.response.data.error}`);
         dispatch(setSuccessInfoAC(err.data.error));
@@ -113,7 +106,7 @@ export const resetPasswordTC =
       .finally(() => {
         dispatch(setIsLoadingAC(false));
         setTimeout(() => {
-          dispatch(setSuccessInfoAC(""));
+          dispatch(setSuccessInfoAC(''));
           // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         }, 5000);
       });

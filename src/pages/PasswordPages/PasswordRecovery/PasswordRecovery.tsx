@@ -1,18 +1,14 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { resetPasswordTC } from "pages/PasswordPages/PasswordRecovery/passwordRecovery-reducer";
-import { RootState } from "store/store";
+import { resetPasswordTC } from 'store/reducers/ResetPassword';
+import { RootState } from 'store/store';
 
 const PasswordRecovery: FC = () => {
-  const isSent = useSelector<RootState, boolean>(
-    (state) => state.resetPassword.isSent
-  );
+  const isSent = useSelector<RootState, boolean>(state => state.resetPassword.isSent);
 
-  let email = useSelector<RootState, string>(
-    (state) => state.resetPassword.email
-  );
+  let email = useSelector<RootState, string>(state => state.resetPassword.email);
   // const errorMessage = useSelector<RootState, string | undefined>(
   //   (state) => state.resetPassword.error
   // );
@@ -20,7 +16,7 @@ const PasswordRecovery: FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const submitInstruction = () => {
-    dispatch(resetPasswordTC({ email, from: " ", message: "" }));
+    dispatch(resetPasswordTC({ email, from: ' ', message: '' }));
   };
   let valueEmail;
 
@@ -28,7 +24,7 @@ const PasswordRecovery: FC = () => {
   function myFunction() {
     // @ts-ignore
     // eslint-disable-next-line no-alert
-    email = document.getElementById("email").value;
+    email = document.getElementById('email').value;
     valueEmail = email;
     console.log(`Email:${valueEmail}`);
   }
@@ -51,9 +47,7 @@ const PasswordRecovery: FC = () => {
 
               {/* <div>{errorMessage}</div> */}
             </div>
-            <p>
-              Enter your email address and we will send you further instructions
-            </p>
+            <p>Enter your email address and we will send you further instructions</p>
 
             <button disabled={false} type="submit" onClick={submitInstruction}>
               Send Instructions

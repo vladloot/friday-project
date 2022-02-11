@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { HashRouter } from "react-router-dom";
 
-import App from './app/App';
+import App from "./app/App";
 
-import { store } from 'store/store';
+import { store } from "store/store";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,5 +14,5 @@ ReactDOM.render(
       <App />
     </HashRouter>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
