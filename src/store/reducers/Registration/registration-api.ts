@@ -9,6 +9,6 @@ const instance = axios.create({
 
 export const registrationApi = {
   fetchRegistrationInfo(userInfo: UserInfoType) {
-    return instance.post<UserInfoType, any>('register', userInfo);
+    return instance.post<UserInfoType>('register', userInfo);
   },
 };
