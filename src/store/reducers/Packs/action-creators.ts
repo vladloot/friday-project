@@ -37,4 +37,17 @@ export const PacksActionCreators = {
         dispatch(allActionCreators.setAppIsLoading(false));
       }
     },
+  deletePack:
+    (id: string | undefined) =>
+    async (dispatch: ThunkDispatch<RootState, unknown, any>) => {
+      try {
+        dispatch(allActionCreators.setAppIsLoading(true));
+        await PacksService.deletePack(id);
+        await dispatch(allActionCreators.getPacks());
+      } catch (error) {
+        handleError(error, dispatch);
+      } finally {
+        dispatch(allActionCreators.setAppIsLoading(false));
+      }
+    },
 };

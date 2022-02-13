@@ -50,7 +50,7 @@ export type CardsPack = {
   user_id?: string;
   user_name?: string;
   __v?: number;
-  _id?: string;
+  _id?: string | undefined;
 };
 
 export type CardsPackResponse = {
@@ -63,7 +63,7 @@ export type CardsPackResponse = {
 };
 
 export type DeletePack = {
-  id: string;
+  id: string | undefined;
 };
 
 export type UpdatePack = {
