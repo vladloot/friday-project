@@ -1,3 +1,4 @@
+// Auth
 export type LoginParams = {
   email: string;
   password: string;
@@ -21,4 +22,59 @@ export type UserInfoResponse = {
   verified: boolean;
   rememberMe: boolean;
   error?: string;
+};
+
+// Packs
+export type GetPacksQueryParams = {
+  min?: number;
+  max?: number;
+  sortPacks?: string;
+  page?: number;
+  pageCount?: number;
+  user_id?: string;
+  packName?: string;
+};
+
+export type CardsPack = {
+  cardsCount: number;
+  created: string;
+  grade: number;
+  more_id: string;
+  name: string;
+  path: string;
+  private: boolean;
+  rating: number;
+  shots: number;
+  type: string;
+  updated: string;
+  user_id: string;
+  __v: number;
+  _id: string;
+};
+
+export type CardsPackResponse = {
+  cardPacks: CardsPack[];
+  cardPacksTotalCount: number;
+  maxCardsCount: number;
+  minCardsCount: number;
+  page: number;
+  pageCount: number;
+};
+
+export type CreatePack = {
+  cardsPack: {
+    name: string;
+    private?: boolean;
+  };
+};
+
+export type DeletePack = {
+  id: string;
+};
+
+export type UpdatePack = {
+  cardsPack: {
+    id: string;
+    name?: string;
+  };
 };
