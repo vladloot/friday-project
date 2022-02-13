@@ -1,5 +1,7 @@
+import { ThunkDispatch } from 'redux-thunk';
+
 import { PacksService } from 'api/PacksService';
-import { CardsPackResponse } from 'api/types';
+import { CardsPack, CardsPackResponse } from 'api/types';
 import { allActionCreators } from 'store/reducers/action-creators';
 import { PackActionEnum } from 'store/reducers/Packs/types';
 import { AppDispatch, RootState } from 'store/store';
@@ -23,4 +25,16 @@ export const PacksActionCreators = {
       dispatch(allActionCreators.setAppIsLoading(false));
     }
   },
+  addPack:
+    (data: CardsPack) => async (dispatch: ThunkDispatch<RootState, unknown, any>) => {
+      try {
+        dispatch(allActionCreators.setAppIsLoading(true));
+        await PacksService.addPack(data);
+        await dispatch(allActionCreators.getPacks());
+      } catch (error) {
+        handleError(error, dispatch);
+      } finally {
+        dispatch(allActionCreators.setAppIsLoading(false));
+      }
+    },
 };

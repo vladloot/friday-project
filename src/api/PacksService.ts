@@ -3,7 +3,6 @@ import axios, { AxiosResponse } from 'axios';
 import {
   CardsPack,
   CardsPackResponse,
-  CreatePack,
   DeletePack,
   GetPacksQueryParams,
   UpdatePack,
@@ -18,8 +17,8 @@ export const PacksService = {
   getPacks(data?: GetPacksQueryParams) {
     return instance.get<CardsPackResponse>('/cards/pack', { params: data });
   },
-  addPack(data: CreatePack) {
-    return instance.post<CreatePack, AxiosResponse<CardsPack>>('/cards/pack', data);
+  addPack(cardsPack: CardsPack) {
+    return instance.post('/cards/pack', { cardsPack });
   },
   deletePack(data: DeletePack) {
     return instance.delete<CardsPack>(`/cards/pack/`, { params: data });

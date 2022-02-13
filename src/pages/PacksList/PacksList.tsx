@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -18,6 +18,20 @@ const PacksList: FC = () => {
   const mappedPacks = cardPacks.map((pack: CardsPack) => (
     <CardPackItem key={pack._id} pack={pack} />
   ));
+  const [packName, setPackName] = useState<string>('');
+
+  const cardsPack = {
+    name: packName,
+  };
+
+  const changeHandle = (e: ChangeEvent<HTMLInputElement>): void => {
+    setPackName(e.currentTarget.value);
+  };
+
+  const clickHandle = (): void => {
+    dispatch(allActionCreators.addPack(cardsPack));
+    setPackName('');
+  };
 
   useEffect(() => {
     dispatch(allActionCreators.getPacks());
@@ -32,7 +46,8 @@ const PacksList: FC = () => {
           <Input type="search" />
           <Checkbox>Show my packs</Checkbox>
           <Button>Search</Button>
-          <Button>Add new cardpack</Button>
+          <Input placeholder="add pack name" onChange={changeHandle} value={packName} />
+          <Button onClick={clickHandle}>Add new cardpack</Button>
         </div>
         <div className={styles.packs_items}>
           <table className={styles.table}>
