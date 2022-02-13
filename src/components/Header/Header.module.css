@@ -1,6 +1,13 @@
 .container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
+    align-items: center;
     height: 50px;
     background: steelblue;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
 }

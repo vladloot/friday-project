@@ -20,6 +20,9 @@ const CardPackItem: FC<PropsType> = ({ pack }) => {
       <td>
         <Button onClick={onRemoveHandler}>Delete</Button>
       </td>
+      <td>
+        <Button>Learn</Button>
+      </td>
     </tr>
   );
 };

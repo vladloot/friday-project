@@ -25,18 +25,20 @@ const PacksList: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.control_panel}>
-        <span>Number of cards</span>
-        <Input type="range" />
-        <Input type="search" />
-        <Checkbox>Show only mine packs</Checkbox>
-        <Button>Search</Button>
-        <Button>Add new cardpack</Button>
-      </div>
       <div className={styles.packs_list}>
-        <table className={styles.table}>
-          <tbody>{mappedPacks}</tbody>
-        </table>
+        <div className={styles.control_panel}>
+          <span>Number of cards</span>
+          <Input type="range" />
+          <Input type="search" />
+          <Checkbox>Show my packs</Checkbox>
+          <Button>Search</Button>
+          <Button>Add new cardpack</Button>
+        </div>
+        <div className={styles.packs_items}>
+          <table className={styles.table}>
+            <tbody>{mappedPacks}</tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

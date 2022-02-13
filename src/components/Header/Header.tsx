@@ -20,8 +20,12 @@ const Header: FC = () => {
 
   return isLoggedIn ? (
     <div className={styles.container}>
-      <NavLink to={RouteNames.PROFILE}>Profile</NavLink>
-      <NavLink to={RouteNames.PACKS_LIST}>Packs List</NavLink>
+      <NavLink to={RouteNames.PROFILE} className={styles.link}>
+        Profile
+      </NavLink>
+      <NavLink to={RouteNames.PACKS_LIST} className={styles.link}>
+        Packs List
+      </NavLink>
       <Button onClick={handleLogout}>Log Out</Button>
     </div>
   ) : null;

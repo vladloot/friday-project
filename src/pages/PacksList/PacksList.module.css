@@ -1,0 +1,33 @@
+.container {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.packs_list {
+    display: flex;
+    justify-content: space-between;
+    background: #FEFEFF;
+    width: 1000px;
+    height: 636px;
+    border-radius: 10px;
+    font-family: Arial, serif;
+}
+
+.control_panel {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding-top: 20px;
+    background: #ECECF9;
+    text-align: center;
+}
+
+.packs_items {
+    margin: auto;
+}
+
+.table {
+    text-align: center;
+}
