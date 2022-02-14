@@ -2,6 +2,9 @@ import React, { FC } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import styles from './passwordRecovery.module.css';
+
+import Button from 'components/Button/Button';
 import { resetPasswordTC } from 'store/reducers/ResetPassword';
 import { RootState } from 'store/store';
 
@@ -30,11 +33,11 @@ const PasswordRecovery: FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles.block}>
       {!isSent ? (
-        <>
-          <h2>Forgot your password?</h2>
-          <form>
+        <div className={styles.container}>
+          <h2 className={styles.header}>Forgot your password?</h2>
+          <form className={styles.form}>
             <div>
               <span />
               <input
@@ -42,18 +45,26 @@ const PasswordRecovery: FC = () => {
                 type="text"
                 placeholder="Email"
                 value={valueEmail}
+                style={{ width: '250px' }}
                 onChange={myFunction}
               />
 
               {/* <div>{errorMessage}</div> */}
             </div>
-            <p>Enter your email address and we will send you further instructions</p>
+            <p className={styles.text}>
+              Enter your email address and we will send you further instructions
+            </p>
 
-            <button disabled={false} type="submit" onClick={submitInstruction}>
+            <Button
+              disabled={false}
+              type="submit"
+              onClick={submitInstruction}
+              className={styles.button}
+            >
               Send Instructions
-            </button>
+            </Button>
           </form>
-        </>
+        </div>
       ) : (
         <>
           <h2>Check Email</h2>
