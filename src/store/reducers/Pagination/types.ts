@@ -1,5 +1,6 @@
 export type InitialStateType = {
   page: string;
+  cardsPerPage: number;
 };
 
 export type ChangePageType = {
@@ -7,4 +8,9 @@ export type ChangePageType = {
   page: string;
 };
 
-export type ActionsType = ChangePageType;
+export type changeCardsPerPageType = {
+  type: 'CHANGE_CARDS_PER_PAGE';
+  count: number;
+};
+
+export type ActionsType = ChangePageType | changeCardsPerPageType;

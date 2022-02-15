@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { Pagination } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
+import { PaginationCardPerPage } from 'components/PaginationCardPerPage/PaginationCardPerPage';
 import { changePage } from 'store/reducers/Pagination/action-creators';
 
 export const PaginationComponent: FC = () => {
@@ -21,6 +22,10 @@ export const PaginationComponent: FC = () => {
         shape="rounded"
         onChange={handlePageChange}
       />
+
+      <div>
+        <PaginationCardPerPage />
+      </div>
     </div>
   );
 };
