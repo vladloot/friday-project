@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import style from './registration.module.css';
 
@@ -28,9 +28,12 @@ const Registration: FC = () => {
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState('');
 
-  const onChangeEmail = () => (e: any) => setEmail(e.target.value);
-  const onChangePassword = () => (e: any) => setPassword(e.target.value);
-  const onChangeValidPassword = () => (e: any) => setValidPassword(e.target.value);
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setEmail(e.target.value);
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setPassword(e.target.value);
+  const onChangeValidPassword = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setValidPassword(e.target.value);
 
   const registerUser = (): void => {
     const userInfo = {
@@ -58,7 +61,7 @@ const Registration: FC = () => {
         type="text"
         value={email}
         placeholder="Email"
-        onChange={onChangeEmail()}
+        onChange={onChangeEmail}
       />
 
       <input
@@ -66,7 +69,7 @@ const Registration: FC = () => {
         type="password"
         value={password}
         placeholder="Password"
-        onChange={onChangePassword()}
+        onChange={onChangePassword}
       />
 
       <input
@@ -74,14 +77,17 @@ const Registration: FC = () => {
         type="password"
         value={validPassword}
         placeholder="Confirm password"
-        onChange={onChangeValidPassword()}
+        onChange={onChangeValidPassword}
       />
 
       {errorMessage || null}
       {isLoading && <LoaderSpinner />}
 
       <div className={style.buttonWrapper}>
-        <Button className={style.cancelBtn}>Cancel</Button>
+        <Link to="/login" className={style.cancelBtn}>
+          <Button>Cancel</Button>
+        </Link>
+
         <Button className={style.registerBtn} onClick={registerUser} disabled={isLoading}>
           Register
         </Button>
