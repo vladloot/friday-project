@@ -17,9 +17,11 @@ import { allActionCreators } from 'store/reducers/action-creators';
 const PacksList: FC = () => {
   const cardPacks = useTypedSelector(state => state.packs.cardPacks);
   const dispatch = useDispatch();
-  const mappedPacks = cardPacks.map((pack: CardsPack) => (
-    <CardPackItem key={pack._id} pack={pack} />
-  ));
+
+  useEffect(() => {
+    dispatch(allActionCreators.getPacks());
+  }, []);
+
   const [packName, setPackName] = useState('');
   const [privatePack, setPrivatePack] = useState(false);
 
@@ -37,9 +39,13 @@ const PacksList: FC = () => {
     setPackName('');
   };
 
-  useEffect(() => {
-    dispatch(allActionCreators.getPacks());
-  }, []);
+  const changePackName = (cardPack: CardsPack): void => {
+    dispatch(allActionCreators.updatePack(cardPack));
+  };
+
+  const mappedPacks = cardPacks.map((pack: CardsPack) => (
+    <CardPackItem key={pack._id} pack={pack} callback={changePackName} />
+  ));
 
   return (
     <div className={styles.container}>

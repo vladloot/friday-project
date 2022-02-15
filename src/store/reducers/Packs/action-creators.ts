@@ -50,4 +50,16 @@ export const PacksActionCreators = {
         dispatch(allActionCreators.setAppIsLoading(false));
       }
     },
+  updatePack:
+    (data: CardsPack) => async (dispatch: ThunkDispatch<RootState, unknown, any>) => {
+      try {
+        dispatch(allActionCreators.setAppIsLoading(true));
+        await PacksService.updatePack(data);
+        await dispatch(allActionCreators.getPacks());
+      } catch (error) {
+        handleError(error, dispatch);
+      } finally {
+        dispatch(allActionCreators.setAppIsLoading(false));
+      }
+    },
 };
