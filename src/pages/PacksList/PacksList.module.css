@@ -9,8 +9,8 @@
     display: flex;
     justify-content: space-between;
     background: #FEFEFF;
-    width: 1000px;
-    height: 636px;
+    width: 1600px;
+    height: 800px;
     border-radius: 10px;
     font-family: Arial, serif;
 }
@@ -19,15 +19,27 @@
     display: flex;
     flex-direction: column;
     width: 250px;
-    padding-top: 20px;
+    padding-top: 200px;
     background: #ECECF9;
     text-align: center;
 }
 
+.range {
+    width: 100%;
+}
+
+.new_pack_name {
+    width: 100%;
+}
+
 .packs_items {
+    flex: 2;
+    padding: 20px;
     margin: auto;
 }
 
 .table {
-    text-align: center;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
 }

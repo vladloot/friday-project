@@ -62,10 +62,6 @@ export type CardsPackResponse = {
   pageCount: number;
 };
 
-export type DeletePack = {
-  id: string | undefined;
-};
-
 export type UpdatePack = {
   cardsPack: {
     id: string;

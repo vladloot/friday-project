@@ -3,8 +3,7 @@ import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react'
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 
-import style from './search.module.css';
-
+import style from 'components/Search/Search.module.css';
 import searchIcon from 'icons/search-svgrepo-com.svg';
 import { updateSortParams } from 'store/reducers/Search/action-creators';
 
@@ -34,7 +33,7 @@ export const Search: FC = () => {
   return (
     <div className={style.searchWrapper}>
       <input placeholder="Search" value={searchValue} onChange={handleChangeValue} />
-      <img className={style.searchIcon} src={searchIcon} />
+      <img className={style.searchIcon} src={searchIcon} alt="search_icon" />
     </div>
   );
 };

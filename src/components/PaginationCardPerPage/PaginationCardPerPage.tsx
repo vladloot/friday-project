@@ -7,8 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useDispatch } from 'react-redux';
 
-import style from './paginationCardPerPage.module.css';
-
+import style from 'components/PaginationCardPerPage/PaginationCardPerPage.module.css';
 import { changeCardsPerPage } from 'store/reducers/Pagination/action-creators';
 
 const initialCardsPerPage: number = 10;

@@ -1,0 +1,5 @@
+.item:nth-child(2n+1) {
+    background: rgba(99, 96, 128, 0.1);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
