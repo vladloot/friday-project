@@ -19,6 +19,8 @@ export default function packsReducer(
   switch (action.type) {
     case PackActionEnum.SET_PACKS:
       return { ...state, ...action.cardPacks };
+    case PackActionEnum.SET_PACKS_PAGE:
+      return { ...state, page: action.page };
     default:
       return state;
   }

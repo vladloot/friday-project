@@ -48,6 +48,7 @@
 }
 
 .table {
+    margin: 0 auto;
     width: 669px;
     height: 432px;
     border-collapse: collapse;

@@ -10,14 +10,20 @@ import { handleError } from 'utils/error-utils';
 export const PacksActionCreators = {
   setPacks: (cardPacks: CardsPackResponse) =>
     ({ type: PackActionEnum.SET_PACKS, cardPacks } as const),
-  getPacks: () => async (dispatch: AppDispatch, getState: () => RootState) => {
-    const { packs } = getState();
+
+  setPacksPage: (page: number) =>
+    ({ type: PackActionEnum.SET_PACKS_PAGE, page } as const),
+
+  setCardsPerPage: (count: number) =>
+    ({ type: PackActionEnum.SET_CARDS_PER_PAGE, count } as const),
+
+  getPacks: (requestPage: number, pageSize: number) => async (dispatch: AppDispatch) => {
+    dispatch(allActionCreators.setPacksPage(requestPage));
+    dispatch(allActionCreators.setCardsPerPage(pageSize));
+    dispatch(allActionCreators.setAppIsLoading(true));
+
     try {
-      dispatch(allActionCreators.setAppIsLoading(true));
-      const response = await PacksService.getPacks({
-        page: packs.page,
-        pageCount: packs.pageCount,
-      });
+      const response = await PacksService.getPacks(requestPage, pageSize);
       dispatch(allActionCreators.setPacks(response.data));
     } catch (error) {
       handleError(error, dispatch);
@@ -25,37 +31,58 @@ export const PacksActionCreators = {
       dispatch(allActionCreators.setAppIsLoading(false));
     }
   },
+
   addPack:
-    (data: CardsPack) => async (dispatch: ThunkDispatch<RootState, unknown, any>) => {
+    (data: CardsPack) =>
+    async (
+      dispatch: ThunkDispatch<RootState, unknown, any>,
+      getState: () => RootState,
+    ) => {
+      const requestPage = getState().packs.page;
+      const pageSize = getState().packs.pageCount;
+      dispatch(allActionCreators.setAppIsLoading(true));
       try {
-        dispatch(allActionCreators.setAppIsLoading(true));
         await PacksService.addPack(data);
-        await dispatch(allActionCreators.getPacks());
+        await dispatch(allActionCreators.getPacks(requestPage, pageSize));
       } catch (error) {
         handleError(error, dispatch);
       } finally {
         dispatch(allActionCreators.setAppIsLoading(false));
       }
     },
+
   deletePack:
     (id: string | undefined) =>
-    async (dispatch: ThunkDispatch<RootState, unknown, any>) => {
+    async (
+      dispatch: ThunkDispatch<RootState, unknown, any>,
+      getState: () => RootState,
+    ) => {
+      const requestPage = getState().packs.page;
+      const pageSize = getState().packs.pageCount;
+      dispatch(allActionCreators.setAppIsLoading(true));
       try {
-        dispatch(allActionCreators.setAppIsLoading(true));
         await PacksService.deletePack(id);
-        await dispatch(allActionCreators.getPacks());
+        await dispatch(allActionCreators.getPacks(requestPage, pageSize));
       } catch (error) {
         handleError(error, dispatch);
       } finally {
         dispatch(allActionCreators.setAppIsLoading(false));
       }
     },
+
   updatePack:
-    (data: CardsPack) => async (dispatch: ThunkDispatch<RootState, unknown, any>) => {
+    (data: CardsPack) =>
+    async (
+      dispatch: ThunkDispatch<RootState, unknown, any>,
+      getState: () => RootState,
+    ) => {
+      const requestPage = getState().packs.page;
+      const pageSize = getState().packs.pageCount;
+      dispatch(allActionCreators.setAppIsLoading(true));
+
       try {
-        dispatch(allActionCreators.setAppIsLoading(true));
         await PacksService.updatePack(data);
-        await dispatch(allActionCreators.getPacks());
+        await dispatch(allActionCreators.getPacks(requestPage, pageSize));
       } catch (error) {
         handleError(error, dispatch);
       } finally {

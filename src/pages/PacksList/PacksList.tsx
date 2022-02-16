@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -14,24 +14,27 @@ import { useTypedSelector } from 'hooks/useTypedSelector';
 import { allActionCreators } from 'store/reducers/action-creators';
 
 const PacksList: FC = () => {
-  const cardPacks = useTypedSelector(state => state.packs.cardPacks);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(allActionCreators.getPacks());
-  }, []);
-
+  const { cardPacks, page, pageCount } = useTypedSelector(state => state.packs);
   const [packName, setPackName] = useState('');
+
+  const dispatch = useDispatch();
 
   const cardsPack = {
     name: packName,
   };
 
-  const changeHandle = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handlePageChange = useCallback(
+    (currentPage: number): void => {
+      dispatch(allActionCreators.getPacks(currentPage, pageCount));
+    },
+    [page],
+  );
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setPackName(e.currentTarget.value);
   };
 
-  const clickHandle = (): void => {
+  const handleOnClick = (): void => {
     dispatch(allActionCreators.addPack(cardsPack));
     setPackName('');
   };
@@ -44,6 +47,10 @@ const PacksList: FC = () => {
     <CardPackItem key={pack._id} pack={pack} callback={changePackName} />
   ));
 
+  useEffect(() => {
+    dispatch(allActionCreators.getPacks(page, pageCount));
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.packs_list}>
@@ -53,11 +60,11 @@ const PacksList: FC = () => {
             <Input type="range" className={styles.range} />
             <Input
               placeholder="add pack name"
-              onChange={changeHandle}
+              onChange={handleNameChange}
               value={packName}
               className={styles.new_pack_name}
             />
-            <Button onClick={clickHandle}>Add new cardpack</Button>
+            <Button onClick={handleOnClick}>Add new cardpack</Button>
           </div>
         </div>
         <div className={styles.packs_items}>
@@ -68,7 +75,7 @@ const PacksList: FC = () => {
           <table className={styles.table}>
             <tbody>{mappedPacks}</tbody>
           </table>
-          <PaginationComponent />
+          <PaginationComponent page={page} callback={handlePageChange} />
         </div>
       </div>
     </div>

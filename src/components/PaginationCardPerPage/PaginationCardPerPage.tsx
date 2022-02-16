@@ -5,15 +5,13 @@ import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { useDispatch } from 'react-redux';
 
 import style from 'components/PaginationCardPerPage/PaginationCardPerPage.module.css';
-import { changeCardsPerPage } from 'store/reducers/Pagination/action-creators';
 
 const initialCardsPerPage: number = 10;
 
 export const PaginationCardPerPage: FC = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [count, setCount] = React.useState(initialCardsPerPage);
 
@@ -22,7 +20,7 @@ export const PaginationCardPerPage: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(changeCardsPerPage(count));
+    // dispatch(changeCardsPerPage(count));
   }, [count]);
 
   return (

@@ -1,28 +1,28 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import { Pagination } from '@mui/material';
-import { useDispatch } from 'react-redux';
 
 import styles from './Pagination.module.css';
 
 import { PaginationCardPerPage } from 'components/PaginationCardPerPage/PaginationCardPerPage';
-import { changePage } from 'store/reducers/Pagination/action-creators';
 
-export const PaginationComponent: FC = () => {
-  const dispatch = useDispatch();
+type PropsType = {
+  page: number;
+  callback: (value: number) => void;
+};
 
-  const handlePageChange = (e: any): void => {
-    const { textContent } = e.target;
-    dispatch(changePage(textContent));
+export const PaginationComponent: FC<PropsType> = ({ page, callback }) => {
+  const handleChange = (e: ChangeEvent<unknown>, value: number): void => {
+    callback(value);
   };
-
   return (
     <div className={styles.container}>
       <Pagination
         count={10}
+        page={page}
         variant="outlined"
         shape="rounded"
-        onChange={handlePageChange}
+        onChange={handleChange}
       />
 
       <div>

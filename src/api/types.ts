@@ -25,16 +25,6 @@ export type UserInfoResponse = {
 };
 
 // Packs
-export type GetPacksQueryParams = {
-  min?: number;
-  max?: number;
-  sortPacks?: string;
-  page?: number;
-  pageCount?: number;
-  user_id?: string;
-  packName?: string;
-};
-
 export type CardsPack = {
   cardsCount?: number;
   created?: string;

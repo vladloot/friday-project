@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { CardsPack, CardsPackResponse, GetPacksQueryParams, UpdatePack } from 'api/types';
+import { CardsPack, CardsPackResponse, UpdatePack } from 'api/types';
 
 const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -8,8 +8,10 @@ const instance = axios.create({
 });
 
 export const PacksService = {
-  getPacks(data?: GetPacksQueryParams) {
-    return instance.get<CardsPackResponse>('/cards/pack', { params: data });
+  getPacks(page: number, pageCount: number) {
+    return instance.get<CardsPackResponse>(
+      `/cards/pack?page=${page}&pageCount=${pageCount}`,
+    );
   },
   addPack(cardsPack: CardsPack) {
     return instance.post('/cards/pack', { cardsPack });
