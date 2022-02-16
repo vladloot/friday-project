@@ -13,7 +13,7 @@ export enum RouteNames {
   PROFILE = '/profile',
   ERROR = '/404',
   PASSWORD_RECOVERY = '/password-recovery',
-  NEW_PASSWORD = '/new-password',
+  NEW_PASSWORD = '/new-password/:token*',
 }
 
 export type RouteType = {
