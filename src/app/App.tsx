@@ -7,6 +7,7 @@ import AppRouter from './AppRouter';
 import './App.css';
 import { PaginationComponent } from 'components/Pagination/pagination';
 import { Search } from 'components/Search/Search';
+import { SortButton } from 'components/SortButton/SortButton';
 
 const App: FC = () => (
   <>
@@ -14,6 +15,7 @@ const App: FC = () => (
     <AppRouter />
     <Search />
     <PaginationComponent />
+    <SortButton sortPacksValue="updated" />
   </>
 );
 export default App;
