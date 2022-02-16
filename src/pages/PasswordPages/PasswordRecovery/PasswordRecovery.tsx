@@ -52,7 +52,7 @@ const PasswordRecovery: FC = () => {
     <div className={styles.block}>
       {!isSent ? (
         <div className={styles.container}>
-          <h2 className={styles.header}>Forgot your password?</h2>
+          <h2>Forgot your password?</h2>
           <form className={styles.form} onSubmit={submitInstruction}>
             <div>
               <span />
