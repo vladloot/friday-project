@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import styles from './PacksList.module.css';
 
@@ -10,11 +11,13 @@ import CardPackItem from 'components/CardPackItem/CardPackItem';
 import Input from 'components/Input/Input';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 import { Search } from 'components/Search/Search';
+import { SortButton } from 'components/SortButton/SortButton';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 import { allActionCreators } from 'store/reducers/action-creators';
 
 const PacksList: FC = () => {
   const { cardPacks, page, pageCount } = useTypedSelector(state => state.packs);
+  const { isLoggedIn } = useTypedSelector(state => state.login);
   const [packName, setPackName] = useState('');
 
   const dispatch = useDispatch();
@@ -29,6 +32,10 @@ const PacksList: FC = () => {
     },
     [page],
   );
+
+  const handleSearchByName = useCallback((searchedPack: string): void => {
+    dispatch(allActionCreators.getPacks(page, pageCount, searchedPack));
+  }, []);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setPackName(e.currentTarget.value);
@@ -51,6 +58,8 @@ const PacksList: FC = () => {
     dispatch(allActionCreators.getPacks(page, pageCount));
   }, []);
 
+  if (!isLoggedIn) return <Navigate to="/login" />;
+
   return (
     <div className={styles.container}>
       <div className={styles.packs_list}>
@@ -65,12 +74,13 @@ const PacksList: FC = () => {
               className={styles.new_pack_name}
             />
             <Button onClick={handleOnClick}>Add new cardpack</Button>
+            <SortButton sortPacksValue="value" />
           </div>
         </div>
         <div className={styles.packs_items}>
           <h1>Packs List</h1>
           <div className={styles.packs_search}>
-            <Search />
+            <Search callback={handleSearchByName} />
           </div>
           <table className={styles.table}>
             <tbody>{mappedPacks}</tbody>

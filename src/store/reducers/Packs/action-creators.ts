@@ -17,20 +17,22 @@ export const PacksActionCreators = {
   setCardsPerPage: (count: number) =>
     ({ type: PackActionEnum.SET_CARDS_PER_PAGE, count } as const),
 
-  getPacks: (requestPage: number, pageSize: number) => async (dispatch: AppDispatch) => {
-    dispatch(allActionCreators.setPacksPage(requestPage));
-    dispatch(allActionCreators.setCardsPerPage(pageSize));
-    dispatch(allActionCreators.setAppIsLoading(true));
+  getPacks:
+    (requestPage: number, pageSize: number, packName: string = '') =>
+    async (dispatch: AppDispatch) => {
+      dispatch(allActionCreators.setPacksPage(requestPage));
+      dispatch(allActionCreators.setCardsPerPage(pageSize));
+      dispatch(allActionCreators.setAppIsLoading(true));
 
-    try {
-      const response = await PacksService.getPacks(requestPage, pageSize);
-      dispatch(allActionCreators.setPacks(response.data));
-    } catch (error) {
-      handleError(error, dispatch);
-    } finally {
-      dispatch(allActionCreators.setAppIsLoading(false));
-    }
-  },
+      try {
+        const response = await PacksService.getPacks(requestPage, pageSize, packName);
+        dispatch(allActionCreators.setPacks(response.data));
+      } catch (error) {
+        handleError(error, dispatch);
+      } finally {
+        dispatch(allActionCreators.setAppIsLoading(false));
+      }
+    },
 
   addPack:
     (data: CardsPack) =>

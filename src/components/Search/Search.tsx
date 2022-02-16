@@ -5,20 +5,23 @@ import { useDispatch } from 'react-redux';
 
 import style from 'components/Search/Search.module.css';
 import searchIcon from 'icons/search-svgrepo-com.svg';
-import { updateSortParams } from 'store/reducers/Search/action-creators';
+
+type PropsType = {
+  callback: (packName: string) => void;
+};
 
 const time: number = 400;
 
-export const Search: FC = () => {
+export const Search: FC<PropsType> = ({ callback }) => {
   const dispatch = useDispatch();
 
   const [searchValue, setSearchValue] = useState('');
 
   const debounceDispatch = useCallback(
     debounce(value => {
-      dispatch(updateSortParams(value));
+      dispatch(callback(value));
     }, time),
-    [],
+    [searchValue],
   );
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {

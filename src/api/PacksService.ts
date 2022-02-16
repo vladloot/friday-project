@@ -8,9 +8,9 @@ const instance = axios.create({
 });
 
 export const PacksService = {
-  getPacks(page: number, pageCount: number) {
+  getPacks(page: number, pageCount: number, packName: string = '') {
     return instance.get<CardsPackResponse>(
-      `/cards/pack?page=${page}&pageCount=${pageCount}`,
+      `/cards/pack?page=${page}&pageCount=${pageCount}&packName=${packName}`,
     );
   },
   addPack(cardsPack: CardsPack) {
