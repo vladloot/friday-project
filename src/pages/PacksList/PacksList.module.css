@@ -7,10 +7,9 @@
 
 .packs_list {
     display: flex;
-    justify-content: space-between;
     background: #FEFEFF;
-    width: 1600px;
-    height: 800px;
+    width: 1000px;
+    height: 650px;
     border-radius: 10px;
     font-family: Arial, serif;
 }
@@ -19,27 +18,37 @@
     display: flex;
     flex-direction: column;
     width: 250px;
-    padding-top: 200px;
+    height: 650px;
     background: #ECECF9;
-    text-align: center;
+    text-align: left;
+    border-radius: 8px;
 }
 
-.range {
-    width: 100%;
-}
-
-.new_pack_name {
-    width: 100%;
+.control_items {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .packs_items {
-    flex: 2;
-    padding: 20px;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 48px;
+}
+
+.packs_items h1 {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.packs_search {
+    width: 460px;
 }
 
 .table {
-    width: 100%;
-    text-align: left;
+    width: 669px;
+    height: 432px;
     border-collapse: collapse;
 }

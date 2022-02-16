@@ -29,8 +29,9 @@ const CardPackItem: FC<PropsType> = ({ pack, callback }) => {
   };
   return (
     <tr className={styles.item}>
-      <EditableItem value={pack.name} onChange={onUpdateHandle} />
-      {/* <td>{pack.name}</td> */}
+      <td>
+        <EditableItem value={pack.name} onChange={onUpdateHandle} />
+      </td>
       <td>{pack.cardsCount ? pack.cardsCount : `empty`}</td>
       <td>
         <Button>Update</Button>

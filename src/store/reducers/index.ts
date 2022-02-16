@@ -1,5 +1,6 @@
 import app from './App';
 import login from './Login';
+import packs from './Packs';
 import { paginationReducer } from './Pagination';
 import { SearchReducer } from './Search';
 import { sortButtonReducer } from './SortButton';
@@ -15,4 +16,5 @@ export default {
   SearchReducer,
   paginationReducer,
   sortButtonReducer,
+  packs,
 };
