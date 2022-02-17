@@ -6,6 +6,8 @@ import {
   ResetPasswordValuesType,
   SetNewPasswordValuesType,
 } from 'api/PasswordRecoveryService';
+import { allActionCreators } from 'store/reducers/action-creators';
+import { handleError } from 'utils/error-utils';
 
 type ActionType =
   | SetSuccessInfoType
@@ -111,8 +113,7 @@ type ThunkType = ThunkAction<Promise<any>, any, any, any>;
 export const resetPasswordTC =
   (resetPasswordData: ResetPasswordValuesType): ThunkType =>
   (dispatch: Dispatch) => {
-    console.log('resetPasswordTC');
-    dispatch(setIsLoadingAC(true));
+    dispatch(allActionCreators.setAppIsLoading(true));
     return resetPasswordAPI
       .resetPassword(resetPasswordData)
       .then(res => {
@@ -121,12 +122,11 @@ export const resetPasswordTC =
         dispatch(setIsSentAC(true));
       })
       .catch(err => {
-        // eslint-disable-next-line no-alert
-        alert(`Catch:${err.response.data.error}`);
+        handleError(err, dispatch);
         dispatch(setSuccessInfoAC(err.data.error));
       })
       .finally(() => {
-        dispatch(setIsLoadingAC(false));
+        dispatch(allActionCreators.setAppIsLoading(false));
         setTimeout(() => {
           dispatch(setSuccessInfoAC(''));
           // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -135,7 +135,7 @@ export const resetPasswordTC =
   };
 export const setNewPasswordTC =
   (values: SetNewPasswordValuesType) => (dispatch: Dispatch) => {
-    dispatch(setIsLoadingAC(true));
+    dispatch(allActionCreators.setAppIsLoading(true));
     resetPasswordAPI
       .setNewPassword(values)
       .then(res => {
@@ -143,9 +143,10 @@ export const setNewPasswordTC =
         dispatch(isPasswordChangedAC(true));
       })
       .catch(err => {
+        handleError(err, dispatch);
         console.log(`HI${err}`);
       })
       .finally(() => {
-        dispatch(setIsLoadingAC(false));
+        dispatch(allActionCreators.setAppIsLoading(false));
       });
   };
