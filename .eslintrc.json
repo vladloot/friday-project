@@ -5,7 +5,6 @@
     "es2021": true
   },
   "extends": [
-    "react-app",
     "airbnb",
     "prettier",
     "plugin:react/recommended"
