@@ -5,7 +5,7 @@
 }
 
 html, body {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
 }

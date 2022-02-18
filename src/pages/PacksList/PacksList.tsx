@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -16,7 +16,8 @@ import { useTypedSelector } from 'hooks/useTypedSelector';
 import { allActionCreators } from 'store/reducers/action-creators';
 
 const PacksList: FC = () => {
-  const { cardPacks, page, pageCount } = useTypedSelector(state => state.packs);
+  const { cardPacks, page, pageCount, cardPacksTotalCount, searchedPack } =
+    useTypedSelector(state => state.packs);
   const { isLoggedIn } = useTypedSelector(state => state.login);
   const [packName, setPackName] = useState('');
 
@@ -25,17 +26,6 @@ const PacksList: FC = () => {
   const cardsPack = {
     name: packName,
   };
-
-  const handlePageChange = useCallback(
-    (currentPage: number): void => {
-      dispatch(allActionCreators.getPacks(currentPage, pageCount));
-    },
-    [page],
-  );
-
-  const handleSearchByName = useCallback((searchedPack: string): void => {
-    dispatch(allActionCreators.getPacks(page, pageCount, searchedPack));
-  }, []);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setPackName(e.currentTarget.value);
@@ -55,8 +45,8 @@ const PacksList: FC = () => {
   ));
 
   useEffect(() => {
-    dispatch(allActionCreators.getPacks(page, pageCount));
-  }, []);
+    dispatch(allActionCreators.getPacks(page, pageCount, searchedPack));
+  }, [page, searchedPack, pageCount]);
 
   if (!isLoggedIn) return <Navigate to="/login" />;
 
@@ -80,12 +70,12 @@ const PacksList: FC = () => {
         <div className={styles.packs_items}>
           <h1>Packs List</h1>
           <div className={styles.packs_search}>
-            <Search callback={handleSearchByName} />
+            <Search />
           </div>
           <table className={styles.table}>
             <tbody>{mappedPacks}</tbody>
           </table>
-          <PaginationComponent page={page} callback={handlePageChange} />
+          <PaginationComponent page={page} cardPacksTotalCount={cardPacksTotalCount} />
         </div>
       </div>
     </div>

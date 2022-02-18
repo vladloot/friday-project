@@ -8,6 +8,7 @@ const initialState = {
   minCardsCount: 0,
   page: 1,
   pageCount: 10,
+  searchedPack: '',
 };
 
 type PacksState = typeof initialState;
@@ -18,9 +19,17 @@ export default function packsReducer(
 ): PacksState {
   switch (action.type) {
     case PackActionEnum.SET_PACKS:
-      return { ...state, ...action.cardPacks };
+      return {
+        ...state,
+        ...action.cardPacks,
+        cardPacksTotalCount: action.packsTotalCount,
+      };
     case PackActionEnum.SET_PACKS_PAGE:
       return { ...state, page: action.page };
+    case PackActionEnum.SET_CARDS_PER_PAGE:
+      return { ...state, pageCount: action.count };
+    case PackActionEnum.CHANGE_SEARCH_PACK_NAME:
+      return { ...state, searchedPack: action.searchPackName };
     default:
       return state;
   }

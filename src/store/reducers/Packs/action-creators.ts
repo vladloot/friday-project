@@ -8,8 +8,8 @@ import { AppDispatch, RootState } from 'store/store';
 import { handleError } from 'utils/error-utils';
 
 export const PacksActionCreators = {
-  setPacks: (cardPacks: CardsPackResponse) =>
-    ({ type: PackActionEnum.SET_PACKS, cardPacks } as const),
+  setPacks: (cardPacks: CardsPackResponse, packsTotalCount: number) =>
+    ({ type: PackActionEnum.SET_PACKS, cardPacks, packsTotalCount } as const),
 
   setPacksPage: (page: number) =>
     ({ type: PackActionEnum.SET_PACKS_PAGE, page } as const),
@@ -17,16 +17,23 @@ export const PacksActionCreators = {
   setCardsPerPage: (count: number) =>
     ({ type: PackActionEnum.SET_CARDS_PER_PAGE, count } as const),
 
+  changeSearchPackName: (searchPackName: string) =>
+    ({
+      type: PackActionEnum.CHANGE_SEARCH_PACK_NAME,
+      searchPackName,
+    } as const),
+
   getPacks:
     (requestPage: number, pageSize: number, packName: string = '') =>
     async (dispatch: AppDispatch) => {
       dispatch(allActionCreators.setPacksPage(requestPage));
-      dispatch(allActionCreators.setCardsPerPage(pageSize));
       dispatch(allActionCreators.setAppIsLoading(true));
 
       try {
         const response = await PacksService.getPacks(requestPage, pageSize, packName);
-        dispatch(allActionCreators.setPacks(response.data));
+        dispatch(
+          allActionCreators.setPacks(response.data, response.data.cardPacksTotalCount),
+        );
       } catch (error) {
         handleError(error, dispatch);
       } finally {
