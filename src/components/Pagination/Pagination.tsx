@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { ChangeEvent, FC, memo, useCallback } from 'react';
 
 import { Pagination } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -18,9 +18,8 @@ export const PaginationComponent: FC<PropsType> = memo(
     const dispatch = useDispatch();
 
     const handlePageChange = useCallback(
-      (e: any): void => {
-        const { textContent } = e.target;
-        dispatch(PacksActionCreators.setPacksPage(+textContent));
+      (e: ChangeEvent<unknown>, value: number): void => {
+        dispatch(PacksActionCreators.setPacksPage(value));
       },
       [page],
     );
