@@ -1,40 +1,49 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
+import styles from './passwordRecovery.module.css';
+
+import Button from 'components/Button/Button';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 import { resetPasswordTC } from 'store/reducers/ResetPassword';
 import { RootState } from 'store/store';
+import { handleError } from 'utils/error-utils';
 
 const PasswordRecovery: FC = () => {
+  const { error } = useTypedSelector(state => state.app);
   const isSent = useSelector<RootState, boolean>(state => state.resetPassword.isSent);
 
-  let email = useSelector<RootState, string>(state => state.resetPassword.email);
-  // const errorMessage = useSelector<RootState, string | undefined>(
-  //   (state) => state.resetPassword.error
-  // );
-  const dispatch = useDispatch();
+  const [valueEmail, setValueEmail] = useState('');
+  const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const submitInstruction = () => {
-    dispatch(resetPasswordTC({ email, from: ' ', message: '' }));
+  const submitInstruction = (e: FormEvent): void => {
+    e.preventDefault();
+    dispatch(
+      resetPasswordTC({
+        email: valueEmail,
+        from: 'From test Friday',
+        // message: `<div> password recovery link: <a href='https://vladloot.github.io/friday-project#/new-password/$token$'>link</a></div>`,
+        message: `<div> password recovery link: <a href='http://localhost:3000/friday-project?#/new-password/$token$'>link</a></div>`,
+      }),
+    ).catch((err: {}) => {
+      console.log(`Error:${err}`);
+    });
   };
-  let valueEmail;
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  function myFunction() {
-    // @ts-ignore
-    // eslint-disable-next-line no-alert
-    email = document.getElementById('email').value;
-    valueEmail = email;
-    console.log(`Email:${valueEmail}`);
-  }
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setValueEmail(e.target.value);
+    handleError('', dispatch);
+  };
 
   return (
-    <div>
+    <div className={styles.block}>
       {!isSent ? (
-        <>
-          <h2>Forgot your password?</h2>
-          <form>
+        <div className={styles.container}>
+          <h2 className={styles.header}>Forgot your password?</h2>
+          <form className={styles.form} onSubmit={submitInstruction}>
             <div>
               <span />
               <input
@@ -42,26 +51,28 @@ const PasswordRecovery: FC = () => {
                 type="text"
                 placeholder="Email"
                 value={valueEmail}
-                onChange={myFunction}
+                style={{ width: '250px' }}
+                onChange={onChangeEmail}
               />
-
-              {/* <div>{errorMessage}</div> */}
+              {error && <div style={{ color: 'red' }}>{error}</div>}
             </div>
-            <p>Enter your email address and we will send you further instructions</p>
+            <p className={styles.text}>
+              Enter your email address and we will send you further instructions
+            </p>
 
-            <button disabled={false} type="submit" onClick={submitInstruction}>
+            <Button disabled={false} type="submit" className={styles.button}>
               Send Instructions
-            </button>
+            </Button>
           </form>
-        </>
+        </div>
       ) : (
-        <>
-          <h2>Check Email</h2>
-          <p>
+        <div className={styles.container}>
+          <h2 className={styles.header}>Check Email</h2>
+          <div className={styles.text}>
             We’ve sent an Email with instructions to <br />
-            {email}
-          </p>
-        </>
+            {valueEmail}
+          </div>
+        </div>
       )}
     </div>
   );

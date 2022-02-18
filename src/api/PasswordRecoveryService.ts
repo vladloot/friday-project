@@ -11,8 +11,14 @@ export type ResetPasswordValuesType = {
   from: string;
   message: string;
 };
+export type SetNewPasswordValuesType = {
+  password: string;
+  resetPasswordToken: string;
+};
 
 export const resetPasswordAPI = {
   resetPassword: (resetPasswordValues: ResetPasswordValuesType) =>
     instance.post(`auth/forgot`, resetPasswordValues),
+  setNewPassword: (values: SetNewPasswordValuesType) =>
+    instance.post('/auth/set-new-password', values),
 };

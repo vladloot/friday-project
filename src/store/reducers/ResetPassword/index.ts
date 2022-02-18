@@ -1,8 +1,20 @@
 import { Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 
-import { resetPasswordAPI, ResetPasswordValuesType } from 'api/PasswordRecoveryService';
+import {
+  resetPasswordAPI,
+  ResetPasswordValuesType,
+  SetNewPasswordValuesType,
+} from 'api/PasswordRecoveryService';
+import { allActionCreators } from 'store/reducers/action-creators';
+import { handleError } from 'utils/error-utils';
 
-type ActionType = SetSuccessInfoType | setErrorACType | setEmailACType | setIsSentACType;
+type ActionType =
+  | SetSuccessInfoType
+  | setErrorACType
+  | setEmailACType
+  | setIsSentACType
+  | IsPasswordChangedACType;
 
 type InitialStateType = {
   info: string;
@@ -47,6 +59,11 @@ export default function resetPasswordReducer(
         ...state,
         isSent: action.isSent,
       };
+    case 'IS-PASSWORD-CHANGED':
+      return {
+        ...state,
+        isPasswordChanged: action.isPasswordChanged,
+      };
     default:
       return state;
   }
@@ -83,31 +100,53 @@ export const setIsSentAC = (isSent: boolean) =>
     type: 'SET-IS-SENT',
     isSent,
   } as const);
+export type IsPasswordChangedACType = ReturnType<typeof isPasswordChangedAC>;
+
+export const isPasswordChangedAC = (isPasswordChanged: boolean) =>
+  ({
+    type: 'IS-PASSWORD-CHANGED',
+    isPasswordChanged,
+  } as const);
+
+type ThunkType = ThunkAction<Promise<any>, any, any, any>;
 
 export const resetPasswordTC =
-  (resetPasswordData: ResetPasswordValuesType) => (dispatch: Dispatch) => {
-    console.log('resetPasswordTC');
-    dispatch(setIsLoadingAC(true));
-    resetPasswordAPI
+  (resetPasswordData: ResetPasswordValuesType): ThunkType =>
+  (dispatch: Dispatch) => {
+    dispatch(allActionCreators.setAppIsLoading(true));
+    return resetPasswordAPI
       .resetPassword(resetPasswordData)
       .then(res => {
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        if (res.status === 200) {
-          console.log(res);
-          dispatch(setSuccessInfoAC(res.data.info));
-          dispatch(setIsSentAC(true));
-        }
+        console.log(res);
+        dispatch(setSuccessInfoAC(res.data.info));
+        dispatch(setIsSentAC(true));
       })
       .catch(err => {
-        // eslint-disable-next-line no-alert
-        alert(`Catch:${err.response.data.error}`);
+        handleError(err, dispatch);
         dispatch(setSuccessInfoAC(err.data.error));
       })
       .finally(() => {
-        dispatch(setIsLoadingAC(false));
+        dispatch(allActionCreators.setAppIsLoading(false));
         setTimeout(() => {
           dispatch(setSuccessInfoAC(''));
           // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         }, 5000);
+      });
+  };
+export const setNewPasswordTC =
+  (values: SetNewPasswordValuesType) => (dispatch: Dispatch) => {
+    dispatch(allActionCreators.setAppIsLoading(true));
+    resetPasswordAPI
+      .setNewPassword(values)
+      .then(res => {
+        console.log(res);
+        dispatch(isPasswordChangedAC(true));
+      })
+      .catch(err => {
+        handleError(err, dispatch);
+        console.log(`HI${err}`);
+      })
+      .finally(() => {
+        dispatch(allActionCreators.setAppIsLoading(false));
       });
   };
