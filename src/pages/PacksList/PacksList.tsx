@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 import styles from './PacksList.module.css';
 
-import { CardsPack } from 'api/types';
+import { CardsPack, UpdateCardsPack } from 'api/types';
 import Button from 'components/Button/Button';
 import CardPackItem from 'components/CardPackItem/CardPackItem';
 import Input from 'components/Input/Input';
@@ -36,7 +36,7 @@ const PacksList: FC = () => {
     setPackName('');
   };
 
-  const changePackName = (cardPack: CardsPack): void => {
+  const changePackName = (cardPack: UpdateCardsPack): void => {
     dispatch(allActionCreators.updatePack(cardPack));
   };
 

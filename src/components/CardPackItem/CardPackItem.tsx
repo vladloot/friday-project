@@ -4,14 +4,14 @@ import { useDispatch } from 'react-redux';
 
 import styles from './CardPackItem.module.css';
 
-import { CardsPack } from 'api/types';
+import { CardsPack, UpdateCardsPack } from 'api/types';
 import Button from 'components/Button/Button';
 import { EditableItem } from 'components/EditableItem/EditableItem';
 import { allActionCreators } from 'store/reducers/action-creators';
 
 type PropsType = {
   pack: CardsPack;
-  callback: (cardPack: CardsPack) => void;
+  callback: (cardPack: UpdateCardsPack) => void;
 };
 
 const CardPackItem: FC<PropsType> = ({ pack, callback }) => {

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { CardsPack, CardsPackResponse, UpdatePack } from 'api/types';
+import { CardsPack, CardsPackResponse, NewCardsPack, UpdateCardsPack } from 'api/types';
 
 const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -13,14 +13,16 @@ export const PacksService = {
       `/cards/pack?page=${page}&pageCount=${pageCount}&packName=${packName}`,
     );
   },
-  addPack(cardsPack: CardsPack) {
-    return instance.post('/cards/pack', { cardsPack });
+  addPack(cardsPack: NewCardsPack) {
+    return instance.post<NewCardsPack, AxiosResponse<CardsPack>>('/cards/pack', {
+      cardsPack,
+    });
   },
-  deletePack(id: string | undefined) {
+  deletePack(id: string) {
     return instance.delete<CardsPack>(`/cards/pack?id=${id}`);
   },
-  updatePack(cardsPack: CardsPack) {
-    return instance.put<UpdatePack, AxiosResponse<CardsPack>>('/cards/pack', {
+  updatePack(cardsPack: UpdateCardsPack) {
+    return instance.put<UpdateCardsPack, AxiosResponse<CardsPack>>('/cards/pack', {
       cardsPack,
     });
   },

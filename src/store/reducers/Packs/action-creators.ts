@@ -1,7 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 
 import { PacksService } from 'api/PacksService';
-import { CardsPack, CardsPackResponse } from 'api/types';
+import { CardsPackResponse, NewCardsPack, UpdateCardsPack } from 'api/types';
 import { allActionCreators } from 'store/reducers/action-creators';
 import { PackActionEnum } from 'store/reducers/Packs/types';
 import { AppDispatch, RootState } from 'store/store';
@@ -42,7 +42,7 @@ export const PacksActionCreators = {
     },
 
   addPack:
-    (data: CardsPack) =>
+    (data: NewCardsPack) =>
     async (
       dispatch: ThunkDispatch<RootState, unknown, any>,
       getState: () => RootState,
@@ -61,7 +61,7 @@ export const PacksActionCreators = {
     },
 
   deletePack:
-    (id: string | undefined) =>
+    (id: string) =>
     async (
       dispatch: ThunkDispatch<RootState, unknown, any>,
       getState: () => RootState,
@@ -80,7 +80,7 @@ export const PacksActionCreators = {
     },
 
   updatePack:
-    (data: CardsPack) =>
+    (data: UpdateCardsPack) =>
     async (
       dispatch: ThunkDispatch<RootState, unknown, any>,
       getState: () => RootState,
