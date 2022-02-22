@@ -1,0 +1,13 @@
+.pack {
+    width: 1008px;
+    min-height: 636px;
+    background: #FEFEFF;
+    border-radius: 8px;
+    margin: 0 auto;
+    padding: 19px 24px 19px 24px;
+}
+
+.packName {
+    margin-bottom: 19px;
+    margin-left: 40px;
+}

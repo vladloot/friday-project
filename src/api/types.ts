@@ -40,7 +40,7 @@ export type CardsPack = {
   user_id?: string;
   user_name?: string;
   __v?: number;
-  _id?: string | undefined;
+  _id?: string;
 };
 
 export type CardsPackResponse = {

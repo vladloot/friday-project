@@ -3,6 +3,7 @@ import React from 'react';
 import Error from 'pages/Error/Error';
 import Login from 'pages/Login/Login';
 import PacksList from 'pages/PacksList/PacksList';
+import CardsList from 'pages/CardsList/CardsList';
 import NewPassword from 'pages/PasswordPages/NewPassword/NewPassword';
 import PasswordRecovery from 'pages/PasswordPages/PasswordRecovery/PasswordRecovery';
 import Profile from 'pages/Profile/Profile';
@@ -16,6 +17,7 @@ export enum RouteNames {
   PASSWORD_RECOVERY = '/password-recovery',
   NEW_PASSWORD = '/new-password',
   PACKS_LIST = '/packs-list',
+  CARDS_LIST = '/cards-list',
 }
 
 export type RouteType = {
@@ -33,5 +35,6 @@ export const publicRoutes: RouteType[] = [
 
 export const privateRoutes: RouteType[] = [
   { path: RouteNames.PROFILE, element: Profile },
+  { path: RouteNames.CARDS_LIST, element: CardsList },
   { path: RouteNames.PACKS_LIST, element: PacksList },
 ];
