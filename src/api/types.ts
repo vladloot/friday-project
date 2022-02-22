@@ -40,7 +40,7 @@ export type CardsPack = {
   user_id?: string;
   user_name?: string;
   __v?: number;
-  _id?: string;
+  _id: string;
 };
 
 export type CardsPackResponse = {
@@ -52,9 +52,11 @@ export type CardsPackResponse = {
   pageCount: number;
 };
 
-export type UpdatePack = {
-  cardsPack: {
-    id: string;
-    name?: string;
-  };
+export type NewCardsPack = {
+  name: string;
+};
+
+export type UpdateCardsPack = {
+  _id: string;
+  name?: string;
 };

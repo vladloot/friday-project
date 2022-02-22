@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { CardsPack, UpdateCardsPack } from 'api/types';
 import Button from 'components/Button/Button';
 import CardPackItem from 'components/CardPackItem/CardPackItem';
 import Input from 'components/Input/Input';
+import Modal from 'components/Modal/Modal';
 import { PaginationComponent } from 'components/Pagination/Pagination';
 import { Search } from 'components/Search/Search';
 import { SortButton } from 'components/SortButton/SortButton';
@@ -20,20 +21,20 @@ const PacksList: FC = () => {
     useTypedSelector(state => state.packs);
   const { isLoggedIn } = useTypedSelector(state => state.login);
   const [packName, setPackName] = useState('');
+  const [modal, setModal] = useState(false);
 
   const dispatch = useDispatch();
-
-  const cardsPack = {
-    name: packName,
-  };
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setPackName(e.currentTarget.value);
   };
 
-  const handleOnClick = (): void => {
-    dispatch(allActionCreators.addPack(cardsPack));
-    setPackName('');
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      dispatch(allActionCreators.addPack({ name: packName }));
+      setPackName('');
+      setModal(false);
+    }
   };
 
   const changePackName = (cardPack: UpdateCardsPack): void => {
@@ -62,13 +63,17 @@ const PacksList: FC = () => {
           <div className={styles.control_items}>
             <span>Number of cards</span>
             <Input type="range" className={styles.range} />
-            <Input
-              placeholder="add pack name"
-              onChange={handleNameChange}
-              value={packName}
-              className={styles.new_pack_name}
-            />
-            <Button onClick={handleOnClick}>Add new cardpack</Button>
+            <Modal visible={modal} setVisible={setModal}>
+              <span>Create new pack:</span>
+              <Input
+                placeholder="add pack name"
+                onChange={handleNameChange}
+                value={packName}
+                className={styles.new_pack_name}
+                onKeyPress={handleKeyPress}
+              />
+            </Modal>
+            <Button onClick={() => setModal(true)}>Add new cardpack</Button>
             <SortButton sortPacksValue="value" />
           </div>
         </div>
