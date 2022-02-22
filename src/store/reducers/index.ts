@@ -1,4 +1,5 @@
 import app from './App';
+import { cardReducer } from './Cards';
 import login from './Login';
 import packs from './Packs';
 import { sortButtonReducer } from './SortButton';
@@ -13,4 +14,5 @@ export default {
   registrationReducer,
   sortButtonReducer,
   packs,
+  cardReducer,
 };

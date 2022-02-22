@@ -41,7 +41,12 @@ const PacksList: FC = () => {
   };
 
   const mappedPacks = cardPacks.map((pack: CardsPack) => (
-    <CardPackItem key={pack._id} pack={pack} callback={changePackName} />
+    <CardPackItem
+      key={pack._id}
+      pack={pack}
+      callback={changePackName}
+      packId={pack._id as string}
+    />
   ));
 
   useEffect(() => {

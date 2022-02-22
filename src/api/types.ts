@@ -26,21 +26,21 @@ export type UserInfoResponse = {
 
 // Packs
 export type CardsPack = {
-  cardsCount: number;
-  created: string;
-  grade: number;
-  more_id: string;
+  cardsCount?: number;
+  created?: string;
+  grade?: number;
+  more_id?: string;
   name: string;
-  path: string;
-  private: boolean;
-  rating: number;
-  shots: number;
-  type: string;
-  updated: string;
-  user_id: string;
-  user_name: string;
-  __v: number;
-  _id: string;
+  path?: string;
+  private?: boolean;
+  rating?: number;
+  shots?: number;
+  type?: string;
+  updated?: string;
+  user_id?: string;
+  user_name?: string;
+  __v?: number;
+  _id?: string;
 };
 
 export type CardsPackResponse = {
@@ -52,11 +52,9 @@ export type CardsPackResponse = {
   pageCount: number;
 };
 
-export type NewCardsPack = {
-  name: string;
-};
-
-export type UpdateCardsPack = {
-  _id: string;
-  name?: string;
+export type UpdatePack = {
+  cardsPack: {
+    id: string;
+    name?: string;
+  };
 };

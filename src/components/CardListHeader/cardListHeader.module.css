@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    background: #ECECF9;
+    height: 48px;
+    align-items: center;
+}
+
+.wrapper div {
+    line-height: 45px;
+    font-family: SF UI Display;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    width: 200px;
+}
+
+.grade {
+    text-align: center;
+}

@@ -26,4 +26,7 @@ export const PacksService = {
       cardsPack,
     });
   },
+  getCards(packId: any) {
+    return instance.get(`/cards/card?cardsPack_id=${packId}&pageCount=10`);
+  },
 };

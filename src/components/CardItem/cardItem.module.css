@@ -1,0 +1,14 @@
+.cardWrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+    align-items: center;
+}
+
+.cardWrapper div {
+    width: 200px;
+}
+
+.grade {
+    text-align: center;
+}
