@@ -67,7 +67,7 @@ const CardPackItem: FC<PropsType> = ({ pack, callback, packId }) => {
       </td>
       <td>
         <Modal visible={deleteModal} setVisible={setDeleteModal}>
-          <h1>Are you sure?</h1>
+          <span>Are you sure?</span>
           <Button onClick={onRemoveHandle} style={{ display: 'inline-block' }}>
             Delete
           </Button>
