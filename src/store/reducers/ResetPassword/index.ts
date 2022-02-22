@@ -117,7 +117,6 @@ export const resetPasswordTC =
     return resetPasswordAPI
       .resetPassword(resetPasswordData)
       .then(res => {
-        console.log(res);
         dispatch(setSuccessInfoAC(res.data.info));
         dispatch(setIsSentAC(true));
       })
@@ -139,12 +138,10 @@ export const setNewPasswordTC =
     resetPasswordAPI
       .setNewPassword(values)
       .then(res => {
-        console.log(res);
         dispatch(isPasswordChangedAC(true));
       })
       .catch(err => {
         handleError(err, dispatch);
-        console.log(`HI${err}`);
       })
       .finally(() => {
         dispatch(allActionCreators.setAppIsLoading(false));

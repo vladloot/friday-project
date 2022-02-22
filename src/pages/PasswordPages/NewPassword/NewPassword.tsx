@@ -1,7 +1,7 @@
 import React, { FC, FormEvent, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import Button from 'components/Button/Button';
 import { useTypedSelector } from 'hooks/useTypedSelector';
@@ -26,6 +26,8 @@ const NewPassword: FC = () => {
       dispatch(setNewPasswordTC({ password: valuePassword, resetPasswordToken: token }));
     }
   };
+  const { isPasswordChanged } = useTypedSelector(state => state.resetPassword);
+  if (isPasswordChanged) return <Navigate to="/login'" />;
 
   return (
     <div className={styles.block}>

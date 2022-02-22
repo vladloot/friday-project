@@ -28,9 +28,7 @@ const PasswordRecovery: FC = () => {
         // message: `<div> password recovery link: <a href='https://vladloot.github.io/friday-project#/new-password/$token$'>link</a></div>`,
         message: `<div> password recovery link: <a href='http://localhost:3000/friday-project?#/new-password/$token$'>link</a></div>`,
       }),
-    ).catch((err: {}) => {
-      console.log(`Error:${err}`);
-    });
+    ).catch((err: {}) => {});
   };
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {

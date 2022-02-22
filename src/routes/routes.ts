@@ -28,7 +28,7 @@ export const publicRoutes: RouteType[] = [
   { path: RouteNames.REGISTRATION, element: Registration },
   { path: RouteNames.ERROR, element: Error },
   { path: RouteNames.PASSWORD_RECOVERY, element: PasswordRecovery },
-  { path: RouteNames.NEW_PASSWORD, element: NewPassword },
+  { path: `${RouteNames.NEW_PASSWORD}/:token`, element: NewPassword },
 ];
 
 export const privateRoutes: RouteType[] = [
